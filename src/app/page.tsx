@@ -6,19 +6,19 @@ import { AppProviders } from '@/app/providers';
 import { useNavigationStore, useAuthStore } from '@/app/store';
 import { Sidebar } from '@/widgets/Sidebar';
 import { TopBar } from '@/widgets/TopBar';
-import { LoginPage } from '@/pages/Auth';
+import { LoginPage } from '@/views/Auth';
 import { SIDEBAR_COLLAPSED_WIDTH, SIDEBAR_WIDTH, TOPBAR_HEIGHT } from '@/shared/constants';
 import { useIsMobile } from '@/hooks/use-mobile';
 
-const DashboardPage = lazy(() => import('@/pages/Dashboard/DashboardPage').then(m => ({ default: m.DashboardPage })));
-const UsersPage = lazy(() => import('@/pages/Users/UsersPage').then(m => ({ default: m.UsersPage })));
-const InstructorsPage = lazy(() => import('@/pages/Instructors/InstructorsPage').then(m => ({ default: m.InstructorsPage })));
-const CoursesPage = lazy(() => import('@/pages/Courses/CoursesPage').then(m => ({ default: m.CoursesPage })));
-const AgentsPage = lazy(() => import('@/pages/Agents/AgentsPage').then(m => ({ default: m.AgentsPage })));
-const CategoriesPage = lazy(() => import('@/pages/Categories/CategoriesPage').then(m => ({ default: m.CategoriesPage })));
-const FinancePage = lazy(() => import('@/pages/Finance/FinancePage').then(m => ({ default: m.FinancePage })));
-const AuditLogsPage = lazy(() => import('@/pages/AuditLogs/AuditLogsPage').then(m => ({ default: m.AuditLogsPage })));
-const SettingsPage = lazy(() => import('@/pages/Settings/SettingsPage').then(m => ({ default: m.SettingsPage })));
+const DashboardPage = lazy(() => import('@/views/Dashboard/DashboardPage').then(m => ({ default: m.DashboardPage })));
+const UsersPage = lazy(() => import('@/views/Users/UsersPage').then(m => ({ default: m.UsersPage })));
+const InstructorsPage = lazy(() => import('@/views/Instructors/InstructorsPage').then(m => ({ default: m.InstructorsPage })));
+const CoursesPage = lazy(() => import('@/views/Courses/CoursesPage').then(m => ({ default: m.CoursesPage })));
+const AgentsPage = lazy(() => import('@/views/Agents/AgentsPage').then(m => ({ default: m.AgentsPage })));
+const CategoriesPage = lazy(() => import('@/views/Categories/CategoriesPage').then(m => ({ default: m.CategoriesPage })));
+const FinancePage = lazy(() => import('@/views/Finance/FinancePage').then(m => ({ default: m.FinancePage })));
+const AuditLogsPage = lazy(() => import('@/views/AuditLogs/AuditLogsPage').then(m => ({ default: m.AuditLogsPage })));
+const SettingsPage = lazy(() => import('@/views/Settings/SettingsPage').then(m => ({ default: m.SettingsPage })));
 
 const PAGE_TITLES: Record<string, { title: string; description: string }> = {
   dashboard: { title: 'Dashboard', description: 'Overview of your platform performance' },
