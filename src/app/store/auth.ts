@@ -39,18 +39,23 @@ export const useAuthStore = create<AuthState & AuthActions>()(
           // Mock login - simulate API call
           await new Promise((resolve) => setTimeout(resolve, 800));
 
-          const user = mockUsers.find(
+          // Allow specific demo emails or any mock user
+          const isDemoAdmin = email === 'admin@learnova.com' || email === 'john.doe@example.com';
+          const mockUser = mockUsers.find(
             (u) => u.email.toLowerCase() === email.toLowerCase()
           );
 
-          if (!user || (email !== 'admin@learnova.com' && email !== 'john.doe@example.com')) {
+          if (!isDemoAdmin && !mockUser) {
             throw new Error('Invalid credentials');
           }
 
+          const baseUser = mockUser || mockUsers[0];
           const adminUser: User = {
-            ...user,
+            ...baseUser,
+            id: isDemoAdmin && !mockUser ? 'usr_admin' : baseUser.id,
+            email,
             role: 'super_admin',
-            name: email === 'admin@learnova.com' ? 'Super Admin' : user.name,
+            name: email === 'admin@learnova.com' ? 'Super Admin' : (isDemoAdmin ? baseUser.name : baseUser.name),
             status: 'active',
           };
 
