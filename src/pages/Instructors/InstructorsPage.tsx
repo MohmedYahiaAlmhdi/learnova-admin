@@ -97,12 +97,12 @@ interface StatCardProps {
 
 function StatCard({ label, value, icon, color, bgColor }: StatCardProps) {
   return (
-    <Card className="bg-[#1D2030]/60 border-[#2B2F3E]/60 hover:border-[#3D4255]/80 transition-colors">
+    <Card className="bg-card/60 border-border/60 hover:border-border/80 transition-colors">
       <CardContent className="p-4">
         <div className="flex items-center justify-between">
           <div>
-            <p className="text-xs text-[#7C8597] font-medium mb-1">{label}</p>
-            <p className="text-xl font-display font-bold text-white">{value}</p>
+            <p className="text-xs text-muted-foreground font-medium mb-1">{label}</p>
+            <p className="text-xl font-display font-bold text-foreground">{value}</p>
           </div>
           <div
             className="w-10 h-10 rounded-xl flex items-center justify-center"
@@ -119,7 +119,7 @@ function StatCard({ label, value, icon, color, bgColor }: StatCardProps) {
 /* ── Star Rating Component ── */
 function StarRating({ rating }: { rating: number }) {
   if (rating === 0) {
-    return <span className="text-xs text-[#5A6178]">No reviews</span>;
+    return <span className="text-xs text-muted-foreground/70">No reviews</span>;
   }
   return (
     <div className="flex items-center gap-1">
@@ -130,20 +130,20 @@ function StarRating({ rating }: { rating: number }) {
             className={`w-3.5 h-3.5 ${
               star <= Math.round(rating)
                 ? 'text-amber-400 fill-amber-400'
-                : 'text-[#3D4255]'
+                : 'text-border'
             }`}
           />
         ))}
       </div>
-      <span className="text-xs text-[#B6BCC8] font-medium ml-0.5">{rating.toFixed(1)}</span>
+      <span className="text-xs text-foreground/80 font-medium ml-0.5">{rating.toFixed(1)}</span>
     </div>
   );
 }
 
 /* ── Avatar Colors ── */
 const AVATAR_COLORS = [
-  'bg-[#4F46E5]/20 text-[#4F46E5]',
-  'bg-[#06B6D4]/20 text-[#06B6D4]',
+  'bg-primary/20 text-primary',
+  'bg-[#06B6D4]/20 text-cyan-500',
   'bg-[#10B981]/20 text-[#10B981]',
   'bg-[#F59E0B]/20 text-[#F59E0B]',
   'bg-[#EF4444]/20 text-[#EF4444]',
@@ -259,10 +259,10 @@ export function InstructorsPage() {
     >
       {/* ── Header ── */}
       <motion.div variants={itemVariants}>
-        <h1 className="text-2xl font-display font-bold text-white tracking-tight">
+        <h1 className="text-2xl font-display font-bold text-foreground tracking-tight">
           Instructor Management
         </h1>
-        <p className="text-sm text-[#7C8597] mt-1">
+        <p className="text-sm text-muted-foreground mt-1">
           {instructors.length} instructor{instructors.length !== 1 ? 's' : ''} registered
         </p>
       </motion.div>
@@ -270,23 +270,23 @@ export function InstructorsPage() {
       {/* ── Tabs ── */}
       <motion.div variants={itemVariants}>
         <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-6">
-          <TabsList className="bg-[#12131A] border border-[#2B2F3E] p-1 h-auto">
+          <TabsList className="bg-card border border-border p-1 h-auto">
             <TabsTrigger
               value="all"
-              className="px-4 py-2 text-sm font-medium data-[state=active]:bg-[#4F46E5] data-[state=active]:text-white text-[#7C8597] data-[state=inactive]:hover:text-[#B6BCC8] rounded-md transition-all cursor-pointer"
+              className="px-4 py-2 text-sm font-medium data-[state=active]:bg-primary data-[state=active]:text-primary-foreground text-muted-foreground data-[state=inactive]:hover:text-foreground/80 rounded-md transition-all cursor-pointer"
             >
               <Users className="w-4 h-4 mr-2" />
               All Instructors
               <Badge
                 variant="outline"
-                className="ml-2 text-[10px] bg-[#1D2030] border-[#2B2F3E] text-[#7C8597] h-5 min-w-[20px] px-1.5 data-[state=active]:bg-[#4F46E5]/20 data-[state=active]:border-[#4F46E5]/30 data-[state=active]:text-white"
+                className="ml-2 text-[10px] bg-card border-border text-muted-foreground h-5 min-w-[20px] px-1.5 data-[state=active]:bg-primary/20 data-[state=active]:border-primary/30 data-[state=active]:text-primary-foreground"
               >
                 {instructors.length}
               </Badge>
             </TabsTrigger>
             <TabsTrigger
               value="pending"
-              className="px-4 py-2 text-sm font-medium data-[state=active]:bg-[#4F46E5] data-[state=active]:text-white text-[#7C8597] data-[state=inactive]:hover:text-[#B6BCC8] rounded-md transition-all cursor-pointer"
+              className="px-4 py-2 text-sm font-medium data-[state=active]:bg-primary data-[state=active]:text-primary-foreground text-muted-foreground data-[state=inactive]:hover:text-foreground/80 rounded-md transition-all cursor-pointer"
             >
               <Clock className="w-4 h-4 mr-2" />
               Pending Applications
@@ -301,7 +301,7 @@ export function InstructorsPage() {
             </TabsTrigger>
             <TabsTrigger
               value="withdrawals"
-              className="px-4 py-2 text-sm font-medium data-[state=active]:bg-[#4F46E5] data-[state=active]:text-white text-[#7C8597] data-[state=inactive]:hover:text-[#B6BCC8] rounded-md transition-all cursor-pointer"
+              className="px-4 py-2 text-sm font-medium data-[state=active]:bg-primary data-[state=active]:text-primary-foreground text-muted-foreground data-[state=inactive]:hover:text-foreground/80 rounded-md transition-all cursor-pointer"
             >
               <Wallet className="w-4 h-4 mr-2" />
               Withdrawal Requests
@@ -353,53 +353,53 @@ export function InstructorsPage() {
             {/* Search & Filter */}
             <div className="flex flex-col sm:flex-row gap-3">
               <div className="relative flex-1">
-                <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#5A6178] pointer-events-none" />
+                <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground/70 pointer-events-none" />
                 <Input
                   placeholder="Search instructors by name, email, or specialization..."
                   value={search}
                   onChange={(e) => handleFilterChange(setSearch, e.target.value)}
-                  className="h-10 pl-10 bg-[#12131A] border-[#2B2F3E] text-white placeholder:text-[#5A6178] text-sm focus-visible:border-[#4F46E5] focus-visible:ring-[#4F46E5]/20"
+                  className="h-10 pl-10 bg-card border-border text-foreground placeholder:text-muted-foreground text-sm focus-visible:border-primary focus-visible:ring-primary/20"
                 />
               </div>
               <Select value={statusFilter} onValueChange={(v) => handleFilterChange(setStatusFilter, v)}>
-                <SelectTrigger className="w-[160px] h-10 bg-[#12131A] border-[#2B2F3E] text-sm text-[#B6BCC8]">
-                  <Filter className="w-4 h-4 mr-2 text-[#5A6178]" />
+                <SelectTrigger className="w-[160px] h-10 bg-card border-border text-sm text-foreground/80">
+                  <Filter className="w-4 h-4 mr-2 text-muted-foreground/70" />
                   <SelectValue placeholder="Status" />
                 </SelectTrigger>
-                <SelectContent className="bg-[#1D2030] border-[#2B2F3E]">
-                  <SelectItem value="all" className="text-[#B6BCC8] focus:bg-[#4F46E5]/10 focus:text-white">All Statuses</SelectItem>
-                  <SelectItem value="approved" className="text-[#B6BCC8] focus:bg-[#4F46E5]/10 focus:text-white">Approved</SelectItem>
-                  <SelectItem value="pending" className="text-[#B6BCC8] focus:bg-[#4F46E5]/10 focus:text-white">Pending</SelectItem>
-                  <SelectItem value="rejected" className="text-[#B6BCC8] focus:bg-[#4F46E5]/10 focus:text-white">Rejected</SelectItem>
-                  <SelectItem value="suspended" className="text-[#B6BCC8] focus:bg-[#4F46E5]/10 focus:text-white">Suspended</SelectItem>
+                <SelectContent className="bg-card border-border">
+                  <SelectItem value="all" className="text-foreground/80 focus:bg-primary/10 focus:text-primary-foreground">All Statuses</SelectItem>
+                  <SelectItem value="approved" className="text-foreground/80 focus:bg-primary/10 focus:text-primary-foreground">Approved</SelectItem>
+                  <SelectItem value="pending" className="text-foreground/80 focus:bg-primary/10 focus:text-primary-foreground">Pending</SelectItem>
+                  <SelectItem value="rejected" className="text-foreground/80 focus:bg-primary/10 focus:text-primary-foreground">Rejected</SelectItem>
+                  <SelectItem value="suspended" className="text-foreground/80 focus:bg-primary/10 focus:text-primary-foreground">Suspended</SelectItem>
                 </SelectContent>
               </Select>
             </div>
 
             {/* Table */}
-            <Card className="bg-[#1D2030]/60 border-[#2B2F3E]/60 overflow-hidden">
+            <Card className="bg-card/60 border-border/60 overflow-hidden">
               <div className="overflow-x-auto">
                 <Table>
                   <TableHeader>
-                    <TableRow className="border-[#2B2F3E]/60 hover:bg-transparent">
-                      <TableHead className="text-[11px] uppercase tracking-wider text-[#7C8597] font-semibold h-11">Instructor</TableHead>
-                      <TableHead className="text-[11px] uppercase tracking-wider text-[#7C8597] font-semibold h-11">Specialization</TableHead>
-                      <TableHead className="text-[11px] uppercase tracking-wider text-[#7C8597] font-semibold h-11 text-right">Commission</TableHead>
-                      <TableHead className="text-[11px] uppercase tracking-wider text-[#7C8597] font-semibold h-11 text-right">Courses</TableHead>
-                      <TableHead className="text-[11px] uppercase tracking-wider text-[#7C8597] font-semibold h-11 text-right">Students</TableHead>
-                      <TableHead className="text-[11px] uppercase tracking-wider text-[#7C8597] font-semibold h-11">Rating</TableHead>
-                      <TableHead className="text-[11px] uppercase tracking-wider text-[#7C8597] font-semibold h-11">Status</TableHead>
-                      <TableHead className="text-[11px] uppercase tracking-wider text-[#7C8597] font-semibold h-11 text-right">Actions</TableHead>
+                    <TableRow className="border-border/60 hover:bg-transparent">
+                      <TableHead className="text-[11px] uppercase tracking-wider text-muted-foreground font-semibold h-11">Instructor</TableHead>
+                      <TableHead className="text-[11px] uppercase tracking-wider text-muted-foreground font-semibold h-11">Specialization</TableHead>
+                      <TableHead className="text-[11px] uppercase tracking-wider text-muted-foreground font-semibold h-11 text-right">Commission</TableHead>
+                      <TableHead className="text-[11px] uppercase tracking-wider text-muted-foreground font-semibold h-11 text-right">Courses</TableHead>
+                      <TableHead className="text-[11px] uppercase tracking-wider text-muted-foreground font-semibold h-11 text-right">Students</TableHead>
+                      <TableHead className="text-[11px] uppercase tracking-wider text-muted-foreground font-semibold h-11">Rating</TableHead>
+                      <TableHead className="text-[11px] uppercase tracking-wider text-muted-foreground font-semibold h-11">Status</TableHead>
+                      <TableHead className="text-[11px] uppercase tracking-wider text-muted-foreground font-semibold h-11 text-right">Actions</TableHead>
                     </TableRow>
                   </TableHeader>
                   <TableBody>
                     {filteredInstructors.length === 0 ? (
-                      <TableRow className="border-[#2B2F3E]/30">
+                      <TableRow className="border-border/30">
                         <TableCell colSpan={8} className="h-40 text-center">
                           <div className="flex flex-col items-center gap-2">
-                            <GraduationCap className="w-10 h-10 text-[#3D4255]" />
-                            <p className="text-sm text-[#7C8597]">No instructors found</p>
-                            <p className="text-xs text-[#5A6178]">Try adjusting your search or filter</p>
+                            <GraduationCap className="w-10 h-10 text-border" />
+                            <p className="text-sm text-muted-foreground">No instructors found</p>
+                            <p className="text-xs text-muted-foreground/70">Try adjusting your search or filter</p>
                           </div>
                         </TableCell>
                       </TableRow>
@@ -407,12 +407,12 @@ export function InstructorsPage() {
                       filteredInstructors.map((inst, index) => (
                         <TableRow
                           key={inst.id}
-                          className="border-[#2B2F3E]/30 hover:bg-[#4F46E5]/[0.04] transition-colors"
+                          className="border-border/30 hover:bg-primary/[0.04] transition-colors"
                         >
                           {/* Name with Avatar */}
                           <TableCell className="py-3 pr-4">
                             <div className="flex items-center gap-3">
-                              <Avatar className="h-9 w-9 border border-[#2B2F3E]">
+                              <Avatar className="h-9 w-9 border border-border">
                                 <AvatarFallback
                                   className={`text-xs font-semibold ${getAvatarColor(index)}`}
                                 >
@@ -420,10 +420,10 @@ export function InstructorsPage() {
                                 </AvatarFallback>
                               </Avatar>
                               <div className="min-w-0">
-                                <p className="text-sm font-medium text-white truncate">
+                                <p className="text-sm font-medium text-foreground truncate">
                                   {inst.name}
                                 </p>
-                                <p className="text-xs text-[#5A6178] mt-0.5 truncate">
+                                <p className="text-xs text-muted-foreground/70 mt-0.5 truncate">
                                   {inst.email}
                                 </p>
                               </div>
@@ -432,28 +432,28 @@ export function InstructorsPage() {
 
                           {/* Specialization */}
                           <TableCell className="py-3">
-                            <span className="text-sm text-[#B6BCC8] line-clamp-1 max-w-[180px]">
+                            <span className="text-sm text-foreground/80 line-clamp-1 max-w-[180px]">
                               {inst.specialization}
                             </span>
                           </TableCell>
 
                           {/* Commission Rate */}
                           <TableCell className="py-3 text-right">
-                            <span className="text-sm font-medium text-[#06B6D4]">
+                            <span className="text-sm font-medium text-cyan-500">
                               {(inst.commissionRate * 100).toFixed(0)}%
                             </span>
                           </TableCell>
 
                           {/* Courses */}
                           <TableCell className="py-3 text-right">
-                            <span className="text-sm text-[#B6BCC8]">
+                            <span className="text-sm text-foreground/80">
                               {inst.courseCount}
                             </span>
                           </TableCell>
 
                           {/* Students */}
                           <TableCell className="py-3 text-right">
-                            <span className="text-sm text-[#B6BCC8]">
+                            <span className="text-sm text-foreground/80">
                               {inst.studentCount > 0
                                 ? inst.studentCount.toLocaleString()
                                 : '—'}
@@ -482,7 +482,7 @@ export function InstructorsPage() {
                                 variant="ghost"
                                 size="sm"
                                 onClick={() => setPreviewInstructor(inst)}
-                                className="h-8 w-8 p-0 text-[#5A6178] hover:text-white hover:bg-[#4F46E5]/10 cursor-pointer"
+                                className="h-8 w-8 p-0 text-muted-foreground/70 hover:text-foreground hover:bg-primary/10 cursor-pointer"
                               >
                                 <Eye className="w-4 h-4" />
                                 <span className="sr-only">View</span>
@@ -553,13 +553,13 @@ export function InstructorsPage() {
           {/* ── Tab 2: Pending Applications ── */}
           <TabsContent value="pending" className="space-y-6">
             {pendingInstructors.length === 0 ? (
-              <Card className="bg-[#1D2030]/60 border-[#2B2F3E]/60">
+              <Card className="bg-card/60 border-border/60">
                 <CardContent className="py-16 flex flex-col items-center gap-3">
                   <div className="w-16 h-16 rounded-2xl bg-emerald-500/10 flex items-center justify-center">
                     <CheckCircle className="w-8 h-8 text-emerald-500/40" />
                   </div>
-                  <p className="text-base font-medium text-white">All caught up!</p>
-                  <p className="text-sm text-[#7C8597]">No pending instructor applications</p>
+                  <p className="text-base font-medium text-foreground">All caught up!</p>
+                  <p className="text-sm text-muted-foreground">No pending instructor applications</p>
                 </CardContent>
               </Card>
             ) : (
@@ -571,12 +571,12 @@ export function InstructorsPage() {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.3, delay: index * 0.05 }}
                   >
-                    <Card className="bg-[#1D2030]/60 border-[#2B2F3E]/60 hover:border-[#3D4255]/80 transition-colors">
+                    <Card className="bg-card/60 border-border/60 hover:border-border/80 transition-colors">
                       <CardContent className="p-5">
                         <div className="flex flex-col sm:flex-row sm:items-center gap-4">
                           {/* Avatar & Info */}
                           <div className="flex items-center gap-3 flex-1 min-w-0">
-                            <Avatar className="h-11 w-11 border border-[#2B2F3E]">
+                            <Avatar className="h-11 w-11 border border-border">
                               <AvatarFallback
                                 className={`text-sm font-semibold ${getAvatarColor(index)}`}
                               >
@@ -585,7 +585,7 @@ export function InstructorsPage() {
                             </Avatar>
                             <div className="min-w-0 flex-1">
                               <div className="flex items-center gap-2">
-                                <h3 className="text-sm font-semibold text-white truncate">
+                                <h3 className="text-sm font-semibold text-foreground truncate">
                                   {inst.name}
                                 </h3>
                                 <Badge
@@ -595,15 +595,15 @@ export function InstructorsPage() {
                                   Pending
                                 </Badge>
                               </div>
-                              <p className="text-xs text-[#5A6178] mt-0.5">{inst.email}</p>
-                              <p className="text-xs text-[#7C8597] mt-1 truncate">
+                              <p className="text-xs text-muted-foreground/70 mt-0.5">{inst.email}</p>
+                              <p className="text-xs text-muted-foreground mt-1 truncate">
                                 {inst.specialization}
                               </p>
                             </div>
                           </div>
 
                           {/* Applied Date */}
-                          <div className="text-xs text-[#5A6178] hidden md:block">
+                          <div className="text-xs text-muted-foreground/70 hidden md:block">
                             <CalendarDays className="w-3.5 h-3.5 inline mr-1" />
                             Applied {formatDateTime(inst.appliedAt)}
                           </div>
@@ -614,7 +614,7 @@ export function InstructorsPage() {
                               variant="ghost"
                               size="sm"
                               onClick={() => setPreviewInstructor(inst)}
-                              className="h-9 px-3 text-[#7C8597] hover:text-white hover:bg-[#4F46E5]/10 text-sm cursor-pointer"
+                              className="h-9 px-3 text-muted-foreground hover:text-foreground hover:bg-primary/10 text-sm cursor-pointer"
                             >
                               <Eye className="w-4 h-4 mr-1.5" />
                               View
@@ -678,27 +678,27 @@ export function InstructorsPage() {
             </div>
 
             {/* Withdrawals Table */}
-            <Card className="bg-[#1D2030]/60 border-[#2B2F3E]/60 overflow-hidden">
+            <Card className="bg-card/60 border-border/60 overflow-hidden">
               <div className="overflow-x-auto">
                 <Table>
                   <TableHeader>
-                    <TableRow className="border-[#2B2F3E]/60 hover:bg-transparent">
-                      <TableHead className="text-[11px] uppercase tracking-wider text-[#7C8597] font-semibold h-11">Instructor</TableHead>
-                      <TableHead className="text-[11px] uppercase tracking-wider text-[#7C8597] font-semibold h-11 text-right">Amount</TableHead>
-                      <TableHead className="text-[11px] uppercase tracking-wider text-[#7C8597] font-semibold h-11">Status</TableHead>
-                      <TableHead className="text-[11px] uppercase tracking-wider text-[#7C8597] font-semibold h-11">Requested</TableHead>
-                      <TableHead className="text-[11px] uppercase tracking-wider text-[#7C8597] font-semibold h-11">Bank (Last 4)</TableHead>
-                      <TableHead className="text-[11px] uppercase tracking-wider text-[#7C8597] font-semibold h-11 text-right">Actions</TableHead>
+                    <TableRow className="border-border/60 hover:bg-transparent">
+                      <TableHead className="text-[11px] uppercase tracking-wider text-muted-foreground font-semibold h-11">Instructor</TableHead>
+                      <TableHead className="text-[11px] uppercase tracking-wider text-muted-foreground font-semibold h-11 text-right">Amount</TableHead>
+                      <TableHead className="text-[11px] uppercase tracking-wider text-muted-foreground font-semibold h-11">Status</TableHead>
+                      <TableHead className="text-[11px] uppercase tracking-wider text-muted-foreground font-semibold h-11">Requested</TableHead>
+                      <TableHead className="text-[11px] uppercase tracking-wider text-muted-foreground font-semibold h-11">Bank (Last 4)</TableHead>
+                      <TableHead className="text-[11px] uppercase tracking-wider text-muted-foreground font-semibold h-11 text-right">Actions</TableHead>
                     </TableRow>
                   </TableHeader>
                   <TableBody>
                     {allWithdrawals.length === 0 ? (
-                      <TableRow className="border-[#2B2F3E]/30">
+                      <TableRow className="border-border/30">
                         <TableCell colSpan={6} className="h-40 text-center">
                           <div className="flex flex-col items-center gap-2">
-                            <Wallet className="w-10 h-10 text-[#3D4255]" />
-                            <p className="text-sm text-[#7C8597]">No withdrawal requests</p>
-                            <p className="text-xs text-[#5A6178]">
+                            <Wallet className="w-10 h-10 text-border" />
+                            <p className="text-sm text-muted-foreground">No withdrawal requests</p>
+                            <p className="text-xs text-muted-foreground/70">
                               Withdrawal requests will appear here
                             </p>
                           </div>
@@ -714,23 +714,23 @@ export function InstructorsPage() {
                         .map((wd) => (
                           <TableRow
                             key={wd.id}
-                            className="border-[#2B2F3E]/30 hover:bg-[#4F46E5]/[0.04] transition-colors"
+                            className="border-border/30 hover:bg-primary/[0.04] transition-colors"
                           >
                             <TableCell className="py-3">
                               <div className="flex items-center gap-3">
-                                <Avatar className="h-8 w-8 border border-[#2B2F3E]">
-                                  <AvatarFallback className="text-[10px] font-semibold bg-[#4F46E5]/20 text-[#4F46E5]">
+                                <Avatar className="h-8 w-8 border border-border">
+                                  <AvatarFallback className="text-[10px] font-semibold bg-primary/20 text-primary">
                                     {getInitials(wd.instructorName)}
                                   </AvatarFallback>
                                 </Avatar>
-                                <span className="text-sm font-medium text-white">
+                                <span className="text-sm font-medium text-foreground">
                                   {wd.instructorName}
                                 </span>
                               </div>
                             </TableCell>
 
                             <TableCell className="py-3 text-right">
-                              <span className="text-sm font-semibold text-white">
+                              <span className="text-sm font-semibold text-foreground">
                                 {formatCurrency(wd.amount)}
                               </span>
                             </TableCell>
@@ -745,15 +745,15 @@ export function InstructorsPage() {
                             </TableCell>
 
                             <TableCell className="py-3">
-                              <span className="text-xs text-[#B6BCC8]">
+                              <span className="text-xs text-foreground/80">
                                 {formatDateTime(wd.requestedAt)}
                               </span>
                             </TableCell>
 
                             <TableCell className="py-3">
                               <div className="flex items-center gap-1.5">
-                                <Building className="w-3.5 h-3.5 text-[#5A6178]" />
-                                <span className="text-xs text-[#7C8597] font-mono">
+                                <Building className="w-3.5 h-3.5 text-muted-foreground/70" />
+                                <span className="text-xs text-muted-foreground font-mono">
                                   {wd.bankDetails || 'N/A'}
                                 </span>
                               </div>
@@ -785,7 +785,7 @@ export function InstructorsPage() {
                                   </Button>
                                 </div>
                               ) : (
-                                <span className="text-xs text-[#5A6178]">
+                                <span className="text-xs text-muted-foreground/70">
                                   {wd.processedAt
                                     ? formatDateTime(wd.processedAt)
                                     : '—'}
@@ -808,12 +808,12 @@ export function InstructorsPage() {
         open={!!previewInstructor}
         onOpenChange={(open) => !open && setPreviewInstructor(null)}
       >
-        <DialogContent className="bg-[#1D2030] border-[#2B2F3E] shadow-2xl max-w-lg max-h-[90vh] overflow-y-auto">
+        <DialogContent className="bg-popover border-border shadow-2xl max-w-lg max-h-[90vh] overflow-y-auto">
           {previewInstructor && (
             <>
               <DialogHeader>
-                <DialogTitle className="text-lg font-display font-bold text-white flex items-center gap-2">
-                  <GraduationCap className="w-5 h-5 text-[#4F46E5]" />
+                <DialogTitle className="text-lg font-display font-bold text-foreground flex items-center gap-2">
+                  <GraduationCap className="w-5 h-5 text-primary" />
                   Instructor Profile
                 </DialogTitle>
               </DialogHeader>
@@ -821,16 +821,16 @@ export function InstructorsPage() {
               <div className="space-y-5 py-2">
                 {/* Profile Header */}
                 <div className="flex items-center gap-4">
-                  <Avatar className="h-16 w-16 border-2 border-[#2B2F3E]">
-                    <AvatarFallback className="text-lg font-bold bg-[#4F46E5]/20 text-[#4F46E5]">
+                  <Avatar className="h-16 w-16 border-2 border-border">
+                    <AvatarFallback className="text-lg font-bold bg-primary/20 text-primary">
                       {getInitials(previewInstructor.name)}
                     </AvatarFallback>
                   </Avatar>
                   <div className="min-w-0 flex-1">
-                    <h3 className="text-base font-semibold text-white">
+                    <h3 className="text-base font-semibold text-foreground">
                       {previewInstructor.name}
                     </h3>
-                    <p className="text-sm text-[#7C8597]">{previewInstructor.email}</p>
+                    <p className="text-sm text-muted-foreground">{previewInstructor.email}</p>
                     <div className="flex items-center gap-2 mt-1.5">
                       <Badge
                         variant="outline"
@@ -846,10 +846,10 @@ export function InstructorsPage() {
                 {/* Bio */}
                 {previewInstructor.bio && (
                   <div>
-                    <p className="text-[10px] uppercase tracking-wider text-[#5A6178] font-semibold mb-1.5">
+                    <p className="text-[10px] uppercase tracking-wider text-muted-foreground/70 font-semibold mb-1.5">
                       Bio
                     </p>
-                    <p className="text-sm text-[#B6BCC8] leading-relaxed">
+                    <p className="text-sm text-foreground/80 leading-relaxed">
                       {previewInstructor.bio}
                     </p>
                   </div>
@@ -857,62 +857,62 @@ export function InstructorsPage() {
 
                 {/* Details Grid */}
                 <div className="grid grid-cols-2 gap-3">
-                  <div className="rounded-lg bg-[#12131A] border border-[#2B2F3E] p-3">
-                    <p className="text-[10px] uppercase tracking-wider text-[#5A6178] font-semibold">
+                  <div className="rounded-lg bg-card border border-border p-3">
+                    <p className="text-[10px] uppercase tracking-wider text-muted-foreground/70 font-semibold">
                       Specialization
                     </p>
-                    <p className="text-sm text-white font-medium mt-1">
+                    <p className="text-sm text-foreground font-medium mt-1">
                       {previewInstructor.specialization}
                     </p>
                   </div>
-                  <div className="rounded-lg bg-[#12131A] border border-[#2B2F3E] p-3">
-                    <p className="text-[10px] uppercase tracking-wider text-[#5A6178] font-semibold">
+                  <div className="rounded-lg bg-card border border-border p-3">
+                    <p className="text-[10px] uppercase tracking-wider text-muted-foreground/70 font-semibold">
                       Commission Rate
                     </p>
-                    <p className="text-sm text-[#06B6D4] font-semibold mt-1">
+                    <p className="text-sm text-cyan-500 font-semibold mt-1">
                       {(previewInstructor.commissionRate * 100).toFixed(0)}%
                     </p>
                   </div>
-                  <div className="rounded-lg bg-[#12131A] border border-[#2B2F3E] p-3">
-                    <p className="text-[10px] uppercase tracking-wider text-[#5A6178] font-semibold">
+                  <div className="rounded-lg bg-card border border-border p-3">
+                    <p className="text-[10px] uppercase tracking-wider text-muted-foreground/70 font-semibold">
                       Total Earnings
                     </p>
-                    <p className="text-sm text-white font-medium mt-1">
+                    <p className="text-sm text-foreground font-medium mt-1">
                       {formatCurrency(previewInstructor.totalEarnings)}
                     </p>
                   </div>
-                  <div className="rounded-lg bg-[#12131A] border border-[#2B2F3E] p-3">
-                    <p className="text-[10px] uppercase tracking-wider text-[#5A6178] font-semibold">
+                  <div className="rounded-lg bg-card border border-border p-3">
+                    <p className="text-[10px] uppercase tracking-wider text-muted-foreground/70 font-semibold">
                       Courses
                     </p>
-                    <p className="text-sm text-white font-medium mt-1">
+                    <p className="text-sm text-foreground font-medium mt-1">
                       {previewInstructor.courseCount}
                     </p>
                   </div>
-                  <div className="rounded-lg bg-[#12131A] border border-[#2B2F3E] p-3">
-                    <p className="text-[10px] uppercase tracking-wider text-[#5A6178] font-semibold">
+                  <div className="rounded-lg bg-card border border-border p-3">
+                    <p className="text-[10px] uppercase tracking-wider text-muted-foreground/70 font-semibold">
                       Students
                     </p>
-                    <p className="text-sm text-white font-medium mt-1">
+                    <p className="text-sm text-foreground font-medium mt-1">
                       {previewInstructor.studentCount.toLocaleString()}
                     </p>
                   </div>
-                  <div className="rounded-lg bg-[#12131A] border border-[#2B2F3E] p-3">
-                    <p className="text-[10px] uppercase tracking-wider text-[#5A6178] font-semibold">
+                  <div className="rounded-lg bg-card border border-border p-3">
+                    <p className="text-[10px] uppercase tracking-wider text-muted-foreground/70 font-semibold">
                       Applied At
                     </p>
-                    <p className="text-sm text-white font-medium mt-1">
+                    <p className="text-sm text-foreground font-medium mt-1">
                       {formatDateTime(previewInstructor.appliedAt)}
                     </p>
                   </div>
                 </div>
 
                 {previewInstructor.reviewedAt && (
-                  <div className="rounded-lg bg-[#12131A] border border-[#2B2F3E] p-3">
-                    <p className="text-[10px] uppercase tracking-wider text-[#5A6178] font-semibold">
+                  <div className="rounded-lg bg-card border border-border p-3">
+                    <p className="text-[10px] uppercase tracking-wider text-muted-foreground/70 font-semibold">
                       Reviewed At
                     </p>
-                    <p className="text-sm text-white font-medium mt-1">
+                    <p className="text-sm text-foreground font-medium mt-1">
                       {formatDateTime(previewInstructor.reviewedAt)}
                     </p>
                   </div>
@@ -921,24 +921,24 @@ export function InstructorsPage() {
                 {/* Withdrawal History */}
                 {previewInstructor.withdrawalRequests.length > 0 && (
                   <div>
-                    <p className="text-[10px] uppercase tracking-wider text-[#5A6178] font-semibold mb-2">
+                    <p className="text-[10px] uppercase tracking-wider text-muted-foreground/70 font-semibold mb-2">
                       Withdrawal History
                     </p>
                     <div className="space-y-2">
                       {previewInstructor.withdrawalRequests.map((wd) => (
                         <div
                           key={wd.id}
-                          className="flex items-center justify-between rounded-lg bg-[#12131A] border border-[#2B2F3E] p-3"
+                          className="flex items-center justify-between rounded-lg bg-card border border-border p-3"
                         >
                           <div className="flex items-center gap-3">
-                            <div className="w-8 h-8 rounded-lg bg-[#1D2030] flex items-center justify-center">
-                              <DollarSign className="w-4 h-4 text-[#7C8597]" />
+                            <div className="w-8 h-8 rounded-lg bg-card flex items-center justify-center">
+                              <DollarSign className="w-4 h-4 text-muted-foreground" />
                             </div>
                             <div>
-                              <p className="text-sm font-medium text-white">
+                              <p className="text-sm font-medium text-foreground">
                                 {formatCurrency(wd.amount)}
                               </p>
-                              <p className="text-xs text-[#5A6178]">
+                              <p className="text-xs text-muted-foreground/70">
                                 {formatDateTime(wd.requestedAt)}
                               </p>
                             </div>
@@ -1006,7 +1006,7 @@ export function InstructorsPage() {
                 <Button
                   variant="ghost"
                   onClick={() => setPreviewInstructor(null)}
-                  className="text-[#7C8597] hover:text-white hover:bg-[#2B2F3E] text-sm h-9 cursor-pointer"
+                  className="text-muted-foreground hover:text-foreground hover:bg-muted text-sm h-9 cursor-pointer"
                 >
                   Close
                 </Button>

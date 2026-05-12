@@ -107,10 +107,10 @@ export function FinancePage() {
     <div className="space-y-6">
       {/* Header */}
       <div>
-        <h1 className="text-2xl font-bold text-white tracking-tight">
+        <h1 className="text-2xl font-bold text-foreground tracking-tight">
           Financial Overview
         </h1>
-        <p className="text-sm text-[#7C8597] mt-1">
+        <p className="text-sm text-muted-foreground mt-1">
           Revenue, payouts, and financial analytics
         </p>
       </div>
@@ -120,15 +120,15 @@ export function FinancePage() {
         {stats.map((stat) => (
           <Card
             key={stat.label}
-            className="bg-[#12131A] border-[#2B2F3E] shadow-none"
+            className="bg-card border-border shadow-none"
           >
             <CardContent className="p-4">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-xs font-medium text-[#7C8597] uppercase tracking-wider">
+                  <p className="text-xs font-medium text-muted-foreground uppercase tracking-wider">
                     {stat.label}
                   </p>
-                  <p className="text-xl font-bold text-white mt-1">
+                  <p className="text-xl font-bold text-foreground mt-1">
                     {stat.value}
                   </p>
                   {stat.change && (
@@ -151,15 +151,15 @@ export function FinancePage() {
 
       {/* Info Row */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <Card className="bg-[#12131A] border-[#2B2F3E] shadow-none">
+        <Card className="bg-card border-border shadow-none">
           <CardContent className="p-4">
             <div className="flex items-center gap-3">
               <div className="w-9 h-9 rounded-lg bg-[#06B6D4]/10 flex items-center justify-center">
                 <Calendar className="w-4 h-4 text-[#06B6D4]" />
               </div>
               <div>
-                <p className="text-xs text-[#7C8597]">Next Payout Date</p>
-                <p className="text-sm font-semibold text-white">
+                <p className="text-xs text-muted-foreground">Next Payout Date</p>
+                <p className="text-sm font-semibold text-foreground">
                   {new Date(data.summary.nextPayoutDate).toLocaleDateString(
                     'en-US',
                     { month: 'long', day: 'numeric', year: 'numeric' }
@@ -169,14 +169,14 @@ export function FinancePage() {
             </div>
           </CardContent>
         </Card>
-        <Card className="bg-[#12131A] border-[#2B2F3E] shadow-none">
+        <Card className="bg-card border-border shadow-none">
           <CardContent className="p-4">
             <div className="flex items-center gap-3">
               <div className="w-9 h-9 rounded-lg bg-emerald-500/10 flex items-center justify-center">
                 <TrendingUp className="w-4 h-4 text-emerald-400" />
               </div>
               <div>
-                <p className="text-xs text-[#7C8597]">Monthly Growth</p>
+                <p className="text-xs text-muted-foreground">Monthly Growth</p>
                 <p className="text-sm font-semibold text-emerald-400">
                   +{data.summary.monthlyGrowth}%
                 </p>
@@ -184,15 +184,15 @@ export function FinancePage() {
             </div>
           </CardContent>
         </Card>
-        <Card className="bg-[#12131A] border-[#2B2F3E] shadow-none">
+        <Card className="bg-card border-border shadow-none">
           <CardContent className="p-4">
             <div className="flex items-center gap-3">
               <div className="w-9 h-9 rounded-lg bg-amber-500/10 flex items-center justify-center">
                 <PiggyBank className="w-4 h-4 text-amber-400" />
               </div>
               <div>
-                <p className="text-xs text-[#7C8597]">Avg Order Value</p>
-                <p className="text-sm font-semibold text-white">
+                <p className="text-xs text-muted-foreground">Avg Order Value</p>
+                <p className="text-sm font-semibold text-foreground">
                   {formatCurrency(data.summary.avgOrderValue)}
                 </p>
               </div>
@@ -202,11 +202,11 @@ export function FinancePage() {
       </div>
 
       {/* Revenue Chart */}
-      <Card className="bg-[#12131A] border-[#2B2F3E] shadow-none">
+      <Card className="bg-card border-border shadow-none">
         <CardHeader className="pb-2">
           <div className="flex items-center gap-2">
             <BarChart3 className="w-5 h-5 text-[#4F46E5]" />
-            <CardTitle className="text-base font-semibold text-white">
+            <CardTitle className="text-base font-semibold text-foreground">
               Monthly Revenue Trend
             </CardTitle>
           </div>
@@ -237,31 +237,31 @@ export function FinancePage() {
                 </defs>
                 <CartesianGrid
                   strokeDasharray="3 3"
-                  stroke="#2B2F3E"
+                  stroke="var(--border)"
                   vertical={false}
                 />
                 <XAxis
                   dataKey="month"
-                  tick={{ fill: '#7C8597', fontSize: 12 }}
-                  axisLine={{ stroke: '#2B2F3E' }}
+                  tick={{ fill: 'var(--muted-foreground)', fontSize: 12 }}
+                  axisLine={{ stroke: 'var(--border)' }}
                   tickLine={false}
                 />
                 <YAxis
-                  tick={{ fill: '#7C8597', fontSize: 12 }}
-                  axisLine={{ stroke: '#2B2F3E' }}
+                  tick={{ fill: 'var(--muted-foreground)', fontSize: 12 }}
+                  axisLine={{ stroke: 'var(--border)' }}
                   tickLine={false}
                   tickFormatter={(v) => `$${(v / 1000).toFixed(0)}K`}
                 />
                 <Tooltip
                   contentStyle={{
-                    backgroundColor: '#12131A',
-                    border: '1px solid #2B2F3E',
+                    backgroundColor: 'var(--card)',
+                    border: '1px solid var(--border)',
                     borderRadius: '10px',
-                    color: '#fff',
+                    color: 'var(--foreground)',
                     fontSize: '13px',
                     boxShadow: '0 8px 24px rgba(0,0,0,0.3)',
                   }}
-                  labelStyle={{ color: '#7C8597' }}
+                  labelStyle={{ color: 'var(--muted-foreground)' }}
                   formatter={(value: number) => [
                     formatCurrency(value),
                     'Revenue',
@@ -281,9 +281,9 @@ export function FinancePage() {
       </Card>
 
       {/* Earnings History Table */}
-      <Card className="bg-[#12131A] border-[#2B2F3E] shadow-none">
+      <Card className="bg-card border-border shadow-none">
         <CardHeader className="pb-3">
-          <CardTitle className="text-base font-semibold text-white">
+          <CardTitle className="text-base font-semibold text-foreground">
             Earnings History
           </CardTitle>
         </CardHeader>
@@ -291,23 +291,23 @@ export function FinancePage() {
           <div className="overflow-x-auto">
             <Table>
               <TableHeader>
-                <TableRow className="border-b border-[#2B2F3E] hover:bg-transparent">
-                  <TableHead className="text-[#7C8597] text-xs font-medium uppercase tracking-wider">
+                <TableRow className="border-b border-border hover:bg-transparent">
+                  <TableHead className="text-muted-foreground text-xs font-medium uppercase tracking-wider">
                     Date
                   </TableHead>
-                  <TableHead className="text-[#7C8597] text-xs font-medium uppercase tracking-wider">
+                  <TableHead className="text-muted-foreground text-xs font-medium uppercase tracking-wider">
                     Type
                   </TableHead>
-                  <TableHead className="text-[#7C8597] text-xs font-medium uppercase tracking-wider">
+                  <TableHead className="text-muted-foreground text-xs font-medium uppercase tracking-wider">
                     Amount
                   </TableHead>
-                  <TableHead className="text-[#7C8597] text-xs font-medium uppercase tracking-wider">
+                  <TableHead className="text-muted-foreground text-xs font-medium uppercase tracking-wider">
                     Status
                   </TableHead>
-                  <TableHead className="text-[#7C8597] text-xs font-medium uppercase tracking-wider">
+                  <TableHead className="text-muted-foreground text-xs font-medium uppercase tracking-wider">
                     Method
                   </TableHead>
-                  <TableHead className="text-[#7C8597] text-xs font-medium uppercase tracking-wider">
+                  <TableHead className="text-muted-foreground text-xs font-medium uppercase tracking-wider">
                     Description
                   </TableHead>
                 </TableRow>
@@ -316,12 +316,12 @@ export function FinancePage() {
                 {data.records.map((record) => (
                   <TableRow
                     key={record.id}
-                    className="border-b border-[#1D2030] hover:bg-[#1D2030]/50"
+                    className="border-b border-border/50 hover:bg-muted/50"
                   >
                     <TableCell>
                       <div className="flex items-center gap-1.5">
-                        <Clock className="w-3 h-3 text-[#5A6178]" />
-                        <span className="text-sm text-[#7C8597]">
+                        <Clock className="w-3 h-3 text-muted-foreground/70" />
+                        <span className="text-sm text-muted-foreground">
                           {formatDateTime(record.createdAt)}
                         </span>
                       </div>
@@ -339,7 +339,7 @@ export function FinancePage() {
                     <TableCell>
                       <span
                         className={`text-sm font-semibold ${
-                          TYPE_AMOUNT_COLORS[record.type] || 'text-white'
+                          TYPE_AMOUNT_COLORS[record.type] || 'text-foreground'
                         }`}
                       >
                         {record.type === 'refund' ? '-' : '+'}
@@ -357,12 +357,12 @@ export function FinancePage() {
                       </Badge>
                     </TableCell>
                     <TableCell>
-                      <span className="text-sm text-[#7C8597]">
+                      <span className="text-sm text-muted-foreground">
                         {record.method || '—'}
                       </span>
                     </TableCell>
                     <TableCell>
-                      <span className="text-sm text-[#7C8597] max-w-[240px] truncate block">
+                      <span className="text-sm text-muted-foreground max-w-[240px] truncate block">
                         {record.description}
                       </span>
                     </TableCell>

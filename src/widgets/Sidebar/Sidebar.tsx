@@ -95,7 +95,7 @@ function NavItemButton({ item, isActive, isCollapsed, onClick }: NavItemButtonPr
         'cursor-pointer',
         isCollapsed ? 'justify-center px-0' : '',
         isActive
-          ? 'text-white'
+          ? 'text-foreground'
           : 'text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground'
       )}
       aria-current={isActive ? 'page' : undefined}
@@ -315,7 +315,7 @@ function SidebarBrand({ isCollapsed }: { isCollapsed: boolean }) {
             transition={{ duration: 0.2, ease: 'easeInOut' }}
             className="flex flex-col overflow-hidden"
           >
-            <span className="font-display text-[16px] font-bold tracking-tight text-white leading-none">
+            <span className="font-display text-[16px] font-bold tracking-tight text-foreground leading-none">
               Learnova
             </span>
             <span className="font-body text-[10.5px] font-medium text-sidebar-foreground/40 tracking-wide uppercase leading-none mt-1">

@@ -108,19 +108,19 @@ export function AuditLogsPage() {
     <div className="space-y-6">
       {/* Header */}
       <div>
-        <h1 className="text-2xl font-bold text-white tracking-tight">
+        <h1 className="text-2xl font-bold text-foreground tracking-tight">
           Audit Log
         </h1>
-        <p className="text-sm text-[#7C8597] mt-1">
+        <p className="text-sm text-muted-foreground mt-1">
           Track system activity and changes across all resources
         </p>
       </div>
 
       {/* Filters */}
-      <Card className="bg-[#12131A] border-[#2B2F3E] shadow-none">
+      <Card className="bg-card border-border shadow-none">
         <CardContent className="p-4">
           <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3">
-            <div className="flex items-center gap-2 text-sm text-[#7C8597]">
+            <div className="flex items-center gap-2 text-sm text-muted-foreground">
               <Filter className="w-4 h-4" />
               <span className="font-medium">Filters:</span>
             </div>
@@ -129,13 +129,13 @@ export function AuditLogsPage() {
                 value={actionFilter}
                 onValueChange={setActionFilter}
               >
-                <SelectTrigger className="w-full sm:w-[180px] h-9 bg-[#0B0B12] border-[#2B2F3E] text-sm text-[#B6BCC8] rounded-lg">
+                <SelectTrigger className="w-full sm:w-[180px] h-9 bg-background border-border text-sm text-foreground/80 rounded-lg">
                   <SelectValue placeholder="Action type" />
                 </SelectTrigger>
-                <SelectContent className="bg-[#12131A] border-[#2B2F3E]">
-                  <SelectItem value="all" className="text-[#B6BCC8]">All Actions</SelectItem>
+                <SelectContent className="bg-card border-border">
+                  <SelectItem value="all" className="text-foreground/80">All Actions</SelectItem>
                   {uniqueActions.map((action) => (
-                    <SelectItem key={action} value={action} className="capitalize text-[#B6BCC8]">
+                    <SelectItem key={action} value={action} className="capitalize text-foreground/80">
                       {action}
                     </SelectItem>
                   ))}
@@ -145,13 +145,13 @@ export function AuditLogsPage() {
                 value={userFilter}
                 onValueChange={setUserFilter}
               >
-                <SelectTrigger className="w-full sm:w-[180px] h-9 bg-[#0B0B12] border-[#2B2F3E] text-sm text-[#B6BCC8] rounded-lg">
+                <SelectTrigger className="w-full sm:w-[180px] h-9 bg-background border-border text-sm text-foreground/80 rounded-lg">
                   <SelectValue placeholder="User" />
                 </SelectTrigger>
-                <SelectContent className="bg-[#12131A] border-[#2B2F3E]">
-                  <SelectItem value="all" className="text-[#B6BCC8]">All Users</SelectItem>
+                <SelectContent className="bg-card border-border">
+                  <SelectItem value="all" className="text-foreground/80">All Users</SelectItem>
                   {uniqueUsers.map((user) => (
-                    <SelectItem key={user} value={user} className="text-[#B6BCC8]">
+                    <SelectItem key={user} value={user} className="text-foreground/80">
                       {user}
                     </SelectItem>
                   ))}
@@ -160,7 +160,7 @@ export function AuditLogsPage() {
               <Button
                 variant="outline"
                 size="sm"
-                className="h-9 bg-[#0B0B12] border-[#2B2F3E] text-[#7C8597] hover:text-white hover:bg-[#1D2030]"
+                className="h-9 bg-background border-border text-muted-foreground hover:text-foreground hover:bg-muted"
                 onClick={() => {
                   setActionFilter('all');
                   setUserFilter('all');
@@ -176,7 +176,7 @@ export function AuditLogsPage() {
       {/* Timeline */}
       <div className="relative">
         {/* Timeline connecting line */}
-        <div className="absolute left-5 top-0 bottom-0 w-px bg-gradient-to-b from-[#2B2F3E] via-[#2B2F3E] to-transparent hidden md:block" />
+        <div className="absolute left-5 top-0 bottom-0 w-px bg-gradient-to-b from-border via-border to-transparent hidden md:block" />
 
         <div className="space-y-4">
           {filteredLogs.map((log, index) => {
@@ -186,7 +186,7 @@ export function AuditLogsPage() {
             return (
               <div key={log.id} className="relative md:pl-12">
                 {/* Timeline dot */}
-                <div className="hidden md:flex absolute left-3.5 top-5 w-3.5 h-3.5 rounded-full border-2 border-[#2B2F3E] bg-[#12131A] z-10 items-center justify-center">
+                <div className="hidden md:flex absolute left-3.5 top-5 w-3.5 h-3.5 rounded-full border-2 border-border bg-card z-10 items-center justify-center">
                   <div
                     className={`w-1.5 h-1.5 rounded-full ${
                       log.action === 'create' || log.action === 'approve' || log.action === 'activate'
@@ -202,7 +202,7 @@ export function AuditLogsPage() {
                   />
                 </div>
 
-                <Card className="bg-[#12131A] border-[#2B2F3E] shadow-none hover:border-[#3B3F4E] transition-colors">
+                <Card className="bg-card border-border shadow-none hover:border-border/80 transition-colors">
                   <CardContent className="p-4">
                     {/* Main row */}
                     <div className="flex flex-col sm:flex-row sm:items-start gap-3">
@@ -249,7 +249,7 @@ export function AuditLogsPage() {
                       <div className="flex-1 min-w-0">
                         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1.5">
                           <div className="flex items-center gap-2 flex-wrap">
-                            <span className="text-sm font-semibold text-white">
+                            <span className="text-sm font-semibold text-foreground">
                               {log.userName}
                             </span>
                             <Badge
@@ -262,8 +262,8 @@ export function AuditLogsPage() {
                             </Badge>
                           </div>
                           <div className="flex items-center gap-1.5 shrink-0">
-                            <Clock className="w-3 h-3 text-[#5A6178]" />
-                            <span className="text-xs text-[#5A6178]">
+                            <Clock className="w-3 h-3 text-muted-foreground/70" />
+                            <span className="text-xs text-muted-foreground/70">
                               {formatDateTime(log.createdAt)}
                             </span>
                           </div>
@@ -271,10 +271,10 @@ export function AuditLogsPage() {
 
                         {/* Resource + details */}
                         <div className="mt-2">
-                          <p className="text-sm text-[#B6BCC8]">
+                          <p className="text-sm text-foreground/80">
                             <span
                               className={`font-medium capitalize ${
-                                RESOURCE_COLORS[log.resource] || 'text-[#B6BCC8]'
+                                RESOURCE_COLORS[log.resource] || 'text-foreground/80'
                               }`}
                             >
                               {log.resource}
@@ -293,19 +293,19 @@ export function AuditLogsPage() {
                               View state changes
                             </CollapsibleTrigger>
                             <CollapsibleContent className="mt-2 space-y-2">
-                              <div className="rounded-lg bg-[#0B0B12] border border-[#1D2030] p-3">
+                              <div className="rounded-lg bg-background border border-border/50 p-3">
                                 <p className="text-[10px] font-medium text-red-400 uppercase tracking-wider mb-1.5">
                                   Before
                                 </p>
-                                <pre className="text-xs text-[#7C8597] font-mono overflow-x-auto">
+                                <pre className="text-xs text-muted-foreground font-mono overflow-x-auto">
                                   {JSON.stringify(log.previousState, null, 2)}
                                 </pre>
                               </div>
-                              <div className="rounded-lg bg-[#0B0B12] border border-[#1D2030] p-3">
+                              <div className="rounded-lg bg-background border border-border/50 p-3">
                                 <p className="text-[10px] font-medium text-emerald-400 uppercase tracking-wider mb-1.5">
                                   After
                                 </p>
-                                <pre className="text-xs text-[#7C8597] font-mono overflow-x-auto">
+                                <pre className="text-xs text-muted-foreground font-mono overflow-x-auto">
                                   {JSON.stringify(log.newState, null, 2)}
                                 </pre>
                               </div>
@@ -314,12 +314,12 @@ export function AuditLogsPage() {
                         )}
 
                         {/* IP + User Agent */}
-                        <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 mt-2 pt-2 border-t border-[#1D2030]">
-                          <div className="flex items-center gap-1.5 text-xs text-[#5A6178]">
+                        <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 mt-2 pt-2 border-t border-border/50">
+                          <div className="flex items-center gap-1.5 text-xs text-muted-foreground/70">
                             <Globe className="w-3 h-3" />
                             <span>{log.ipAddress}</span>
                           </div>
-                          <div className="flex items-center gap-1.5 text-xs text-[#5A6178]">
+                          <div className="flex items-center gap-1.5 text-xs text-muted-foreground/70">
                             <Monitor className="w-3 h-3" />
                             <span>{log.userAgent}</span>
                           </div>
@@ -333,11 +333,11 @@ export function AuditLogsPage() {
           })}
 
           {filteredLogs.length === 0 && (
-            <Card className="bg-[#12131A] border-[#2B2F3E] shadow-none">
+            <Card className="bg-card border-border shadow-none">
               <CardContent className="py-16 text-center">
-                <ScrollText className="w-10 h-10 text-[#2B2F3E] mx-auto mb-3" />
-                <p className="text-sm text-[#5A6178]">No audit logs found</p>
-                <p className="text-xs text-[#3B3F4E] mt-1">
+                <ScrollText className="w-10 h-10 text-muted-foreground/40 mx-auto mb-3" />
+                <p className="text-sm text-muted-foreground/70">No audit logs found</p>
+                <p className="text-xs text-muted-foreground/40 mt-1">
                   Try adjusting your filters
                 </p>
               </CardContent>

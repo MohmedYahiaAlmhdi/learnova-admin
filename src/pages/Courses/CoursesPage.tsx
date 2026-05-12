@@ -96,12 +96,12 @@ interface StatCardProps {
 
 function StatCard({ label, value, icon, color, bgColor }: StatCardProps) {
   return (
-    <Card className="bg-[#1D2030]/60 border-[#2B2F3E]/60 hover:border-[#3D4255]/80 transition-colors">
+    <Card className="bg-card border-border hover:border-border transition-colors">
       <CardContent className="p-4">
         <div className="flex items-center justify-between">
           <div>
-            <p className="text-xs text-[#7C8597] font-medium mb-1">{label}</p>
-            <p className="text-xl font-display font-bold text-white">{value}</p>
+            <p className="text-xs text-muted-foreground font-medium mb-1">{label}</p>
+            <p className="text-xl font-display font-bold text-foreground">{value}</p>
           </div>
           <div
             className="w-10 h-10 rounded-xl flex items-center justify-center"
@@ -118,7 +118,7 @@ function StatCard({ label, value, icon, color, bgColor }: StatCardProps) {
 /* ── Star Rating Component ── */
 function StarRating({ rating }: { rating: number }) {
   if (rating === 0) {
-    return <span className="text-xs text-[#5A6178]">No reviews</span>;
+    return <span className="text-xs text-muted-foreground/70">No reviews</span>;
   }
   return (
     <div className="flex items-center gap-1">
@@ -129,12 +129,12 @@ function StarRating({ rating }: { rating: number }) {
             className={`w-3.5 h-3.5 ${
               star <= Math.round(rating)
                 ? 'text-amber-400 fill-amber-400'
-                : 'text-[#3D4255]'
+                : 'text-muted-foreground/40'
             }`}
           />
         ))}
       </div>
-      <span className="text-xs text-[#B6BCC8] font-medium ml-0.5">{rating.toFixed(1)}</span>
+      <span className="text-xs text-foreground/80 font-medium ml-0.5">{rating.toFixed(1)}</span>
     </div>
   );
 }
@@ -228,17 +228,17 @@ export function CoursesPage() {
       {/* ── Header ── */}
       <motion.div variants={itemVariants} className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-display font-bold text-white tracking-tight">
+          <h1 className="text-2xl font-display font-bold text-foreground tracking-tight">
             Course Management
           </h1>
-          <p className="text-sm text-[#7C8597] mt-1">
+          <p className="text-sm text-muted-foreground mt-1">
             {filteredCourses.length} course{filteredCourses.length !== 1 ? 's' : ''} found
             {search || statusFilter !== 'all' || categoryFilter !== 'all'
               ? ' (filtered)'
               : ''}
           </p>
         </div>
-        <Button className="bg-gradient-to-r from-[#4F46E5] to-[#4338CA] hover:from-[#6366F1] hover:to-[#4F46E5] text-white font-semibold text-sm shadow-lg shadow-[#4F46E5]/20 hover:shadow-[#4F46E5]/30 transition-all duration-300 h-10 px-5 cursor-pointer">
+        <Button className="bg-gradient-to-r from-primary to-primary/80 hover:from-primary/80 hover:to-primary text-primary-foreground font-semibold text-sm shadow-lg shadow-primary/20 hover:shadow-primary/30 transition-all duration-300 h-10 px-5 cursor-pointer">
           <Upload className="w-4 h-4 mr-2" />
           New Course
         </Button>
@@ -282,38 +282,38 @@ export function CoursesPage() {
         className="flex flex-col sm:flex-row gap-3"
       >
         <div className="relative flex-1">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#5A6178] pointer-events-none" />
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground/70 pointer-events-none" />
           <Input
             placeholder="Search courses by title or instructor..."
             value={search}
             onChange={(e) => handleFilterChange(setSearch, e.target.value)}
-            className="h-10 pl-10 bg-[#12131A] border-[#2B2F3E] text-white placeholder:text-[#5A6178] text-sm focus-visible:border-[#4F46E5] focus-visible:ring-[#4F46E5]/20"
+            className="h-10 pl-10 bg-card border-border text-foreground placeholder:text-muted-foreground text-sm focus-visible:border-primary focus-visible:ring-primary/20"
           />
         </div>
         <div className="flex gap-3">
           <Select value={statusFilter} onValueChange={(v) => handleFilterChange(setStatusFilter, v)}>
-            <SelectTrigger className="w-[160px] h-10 bg-[#12131A] border-[#2B2F3E] text-sm text-[#B6BCC8]">
-              <Filter className="w-4 h-4 mr-2 text-[#5A6178]" />
+            <SelectTrigger className="w-[160px] h-10 bg-card border-border text-sm text-foreground/80">
+              <Filter className="w-4 h-4 mr-2 text-muted-foreground/70" />
               <SelectValue placeholder="Status" />
             </SelectTrigger>
-            <SelectContent className="bg-[#1D2030] border-[#2B2F3E]">
-              <SelectItem value="all" className="text-[#B6BCC8] focus:bg-[#4F46E5]/10 focus:text-white">All Statuses</SelectItem>
-              <SelectItem value="published" className="text-[#B6BCC8] focus:bg-[#4F46E5]/10 focus:text-white">Published</SelectItem>
-              <SelectItem value="pending_review" className="text-[#B6BCC8] focus:bg-[#4F46E5]/10 focus:text-white">Pending Review</SelectItem>
-              <SelectItem value="draft" className="text-[#B6BCC8] focus:bg-[#4F46E5]/10 focus:text-white">Draft</SelectItem>
-              <SelectItem value="unpublished" className="text-[#B6BCC8] focus:bg-[#4F46E5]/10 focus:text-white">Unpublished</SelectItem>
-              <SelectItem value="rejected" className="text-[#B6BCC8] focus:bg-[#4F46E5]/10 focus:text-white">Rejected</SelectItem>
+            <SelectContent className="bg-popover border-border">
+              <SelectItem value="all" className="text-foreground/80 focus:bg-primary/10 focus:text-primary-foreground">All Statuses</SelectItem>
+              <SelectItem value="published" className="text-foreground/80 focus:bg-primary/10 focus:text-primary-foreground">Published</SelectItem>
+              <SelectItem value="pending_review" className="text-foreground/80 focus:bg-primary/10 focus:text-primary-foreground">Pending Review</SelectItem>
+              <SelectItem value="draft" className="text-foreground/80 focus:bg-primary/10 focus:text-primary-foreground">Draft</SelectItem>
+              <SelectItem value="unpublished" className="text-foreground/80 focus:bg-primary/10 focus:text-primary-foreground">Unpublished</SelectItem>
+              <SelectItem value="rejected" className="text-foreground/80 focus:bg-primary/10 focus:text-primary-foreground">Rejected</SelectItem>
             </SelectContent>
           </Select>
           <Select value={categoryFilter} onValueChange={(v) => handleFilterChange(setCategoryFilter, v)}>
-            <SelectTrigger className="w-[170px] h-10 bg-[#12131A] border-[#2B2F3E] text-sm text-[#B6BCC8]">
-              <BookOpen className="w-4 h-4 mr-2 text-[#5A6178]" />
+            <SelectTrigger className="w-[170px] h-10 bg-card border-border text-sm text-foreground/80">
+              <BookOpen className="w-4 h-4 mr-2 text-muted-foreground/70" />
               <SelectValue placeholder="Category" />
             </SelectTrigger>
-            <SelectContent className="bg-[#1D2030] border-[#2B2F3E]">
-              <SelectItem value="all" className="text-[#B6BCC8] focus:bg-[#4F46E5]/10 focus:text-white">All Categories</SelectItem>
+            <SelectContent className="bg-popover border-border">
+              <SelectItem value="all" className="text-foreground/80 focus:bg-primary/10 focus:text-primary-foreground">All Categories</SelectItem>
               {categories.map((cat) => (
-                <SelectItem key={cat} value={cat} className="text-[#B6BCC8] focus:bg-[#4F46E5]/10 focus:text-white">
+                <SelectItem key={cat} value={cat} className="text-foreground/80 focus:bg-primary/10 focus:text-primary-foreground">
                   {cat}
                 </SelectItem>
               ))}
@@ -324,29 +324,29 @@ export function CoursesPage() {
 
       {/* ── Table ── */}
       <motion.div variants={itemVariants}>
-        <Card className="bg-[#1D2030]/60 border-[#2B2F3E]/60 overflow-hidden">
+        <Card className="bg-card border-border overflow-hidden">
           <div className="overflow-x-auto">
             <Table>
               <TableHeader>
-                <TableRow className="border-[#2B2F3E]/60 hover:bg-transparent">
-                  <TableHead className="text-[11px] uppercase tracking-wider text-[#7C8597] font-semibold h-11">Course</TableHead>
-                  <TableHead className="text-[11px] uppercase tracking-wider text-[#7C8597] font-semibold h-11">Instructor</TableHead>
-                  <TableHead className="text-[11px] uppercase tracking-wider text-[#7C8597] font-semibold h-11">Category</TableHead>
-                  <TableHead className="text-[11px] uppercase tracking-wider text-[#7C8597] font-semibold h-11 text-right">Price</TableHead>
-                  <TableHead className="text-[11px] uppercase tracking-wider text-[#7C8597] font-semibold h-11 text-right">Enrolled</TableHead>
-                  <TableHead className="text-[11px] uppercase tracking-wider text-[#7C8597] font-semibold h-11">Rating</TableHead>
-                  <TableHead className="text-[11px] uppercase tracking-wider text-[#7C8597] font-semibold h-11">Status</TableHead>
-                  <TableHead className="text-[11px] uppercase tracking-wider text-[#7C8597] font-semibold h-11 text-right">Actions</TableHead>
+                <TableRow className="border-border hover:bg-transparent">
+                  <TableHead className="text-[11px] uppercase tracking-wider text-muted-foreground font-semibold h-11">Course</TableHead>
+                  <TableHead className="text-[11px] uppercase tracking-wider text-muted-foreground font-semibold h-11">Instructor</TableHead>
+                  <TableHead className="text-[11px] uppercase tracking-wider text-muted-foreground font-semibold h-11">Category</TableHead>
+                  <TableHead className="text-[11px] uppercase tracking-wider text-muted-foreground font-semibold h-11 text-right">Price</TableHead>
+                  <TableHead className="text-[11px] uppercase tracking-wider text-muted-foreground font-semibold h-11 text-right">Enrolled</TableHead>
+                  <TableHead className="text-[11px] uppercase tracking-wider text-muted-foreground font-semibold h-11">Rating</TableHead>
+                  <TableHead className="text-[11px] uppercase tracking-wider text-muted-foreground font-semibold h-11">Status</TableHead>
+                  <TableHead className="text-[11px] uppercase tracking-wider text-muted-foreground font-semibold h-11 text-right">Actions</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
                 {paginatedCourses.length === 0 ? (
-                  <TableRow className="border-[#2B2F3E]/30">
+                  <TableRow className="border-border">
                     <TableCell colSpan={8} className="h-40 text-center">
                       <div className="flex flex-col items-center gap-2">
-                        <BookOpen className="w-10 h-10 text-[#3D4255]" />
-                        <p className="text-sm text-[#7C8597]">No courses found</p>
-                        <p className="text-xs text-[#5A6178]">Try adjusting your search or filter criteria</p>
+                        <BookOpen className="w-10 h-10 text-muted-foreground/40" />
+                        <p className="text-sm text-muted-foreground">No courses found</p>
+                        <p className="text-xs text-muted-foreground/70">Try adjusting your search or filter criteria</p>
                       </div>
                     </TableCell>
                   </TableRow>
@@ -354,19 +354,19 @@ export function CoursesPage() {
                   paginatedCourses.map((course, index) => (
                     <TableRow
                       key={course.id}
-                      className="border-[#2B2F3E]/30 hover:bg-[#4F46E5]/[0.04] transition-colors group"
+                      className="border-border hover:bg-primary/[0.04] transition-colors group"
                     >
                       {/* Title with thumbnail */}
                       <TableCell className="py-3 pr-4">
                         <div className="flex items-center gap-3">
-                          <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-[#4F46E5]/20 to-[#06B6D4]/10 border border-[#2B2F3E] flex items-center justify-center shrink-0">
-                            <BookOpen className="w-4 h-4 text-[#4F46E5]" />
+                          <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-primary/20 to-[#06B6D4]/10 border border-border flex items-center justify-center shrink-0">
+                            <BookOpen className="w-4 h-4 text-primary" />
                           </div>
                           <div className="min-w-0">
-                            <p className="text-sm font-medium text-white truncate max-w-[220px]">
+                            <p className="text-sm font-medium text-foreground truncate max-w-[220px]">
                               {course.title}
                             </p>
-                            <p className="text-xs text-[#5A6178] mt-0.5">
+                            <p className="text-xs text-muted-foreground/70 mt-0.5">
                               ID: {course.id}
                             </p>
                           </div>
@@ -375,14 +375,14 @@ export function CoursesPage() {
 
                       {/* Instructor */}
                       <TableCell className="py-3">
-                        <span className="text-sm text-[#B6BCC8]">{course.instructorName}</span>
+                        <span className="text-sm text-foreground/80">{course.instructorName}</span>
                       </TableCell>
 
                       {/* Category */}
                       <TableCell className="py-3">
                         <Badge
                           variant="outline"
-                          className="text-xs font-normal bg-[#12131A] border-[#2B2F3E] text-[#B6BCC8] hover:bg-[#12131A]"
+                          className="text-xs font-normal bg-card border-border text-foreground/80 hover:bg-card"
                         >
                           {course.categoryName}
                         </Badge>
@@ -390,14 +390,14 @@ export function CoursesPage() {
 
                       {/* Price */}
                       <TableCell className="py-3 text-right">
-                        <span className="text-sm font-medium text-white">
+                        <span className="text-sm font-medium text-foreground">
                           {formatCurrency(course.price)}
                         </span>
                       </TableCell>
 
                       {/* Enrolled */}
                       <TableCell className="py-3 text-right">
-                        <span className="text-sm text-[#B6BCC8]">
+                        <span className="text-sm text-foreground/80">
                           {course.enrolledCount > 0
                             ? course.enrolledCount.toLocaleString()
                             : '—'}
@@ -426,7 +426,7 @@ export function CoursesPage() {
                             <Button
                               variant="ghost"
                               size="sm"
-                              className="h-8 w-8 p-0 text-[#5A6178] hover:text-white hover:bg-[#4F46E5]/10 cursor-pointer"
+                              className="h-8 w-8 p-0 text-muted-foreground/70 hover:text-foreground hover:bg-primary/10 cursor-pointer"
                             >
                               <MoreHorizontal className="w-4 h-4" />
                               <span className="sr-only">Actions</span>
@@ -434,11 +434,11 @@ export function CoursesPage() {
                           </DropdownMenuTrigger>
                           <DropdownMenuContent
                             align="end"
-                            className="w-48 bg-[#1D2030] border-[#2B2F3E] shadow-xl"
+                            className="w-48 bg-popover border-border shadow-xl"
                           >
                             <DropdownMenuItem
                               onClick={() => setPreviewCourse(course)}
-                              className="text-[#B6BCC8] focus:bg-[#4F46E5]/10 focus:text-white cursor-pointer"
+                              className="text-foreground/80 focus:bg-primary/10 focus:text-primary-foreground cursor-pointer"
                             >
                               <Eye className="w-4 h-4 mr-2" />
                               Preview
@@ -512,8 +512,8 @@ export function CoursesPage() {
 
           {/* ── Pagination ── */}
           {totalPages > 1 && (
-            <div className="flex items-center justify-between px-4 py-3 border-t border-[#2B2F3E]/60">
-              <p className="text-xs text-[#5A6178]">
+            <div className="flex items-center justify-between px-4 py-3 border-t border-border">
+              <p className="text-xs text-muted-foreground/70">
                 Showing {(safeCurrentPage - 1) * pageSize + 1}–
                 {Math.min(safeCurrentPage * pageSize, filteredCourses.length)} of{' '}
                 {filteredCourses.length}
@@ -524,7 +524,7 @@ export function CoursesPage() {
                   size="sm"
                   onClick={() => handlePageChange(safeCurrentPage - 1)}
                   disabled={safeCurrentPage === 1}
-                  className="h-8 w-8 p-0 text-[#5A6178] hover:text-white hover:bg-[#4F46E5]/10 disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer"
+                  className="h-8 w-8 p-0 text-muted-foreground/70 hover:text-foreground hover:bg-primary/10 disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer"
                 >
                   <ChevronLeft className="w-4 h-4" />
                 </Button>
@@ -536,8 +536,8 @@ export function CoursesPage() {
                     onClick={() => handlePageChange(page)}
                     className={`h-8 w-8 p-0 text-xs font-medium cursor-pointer ${
                       page === safeCurrentPage
-                        ? 'bg-[#4F46E5] text-white hover:bg-[#4F46E5] hover:text-white'
-                        : 'text-[#7C8597] hover:text-white hover:bg-[#4F46E5]/10'
+                        ? 'bg-primary text-primary-foreground hover:bg-primary hover:text-primary-foreground'
+                        : 'text-muted-foreground hover:text-foreground hover:bg-primary/10'
                     }`}
                   >
                     {page}
@@ -548,7 +548,7 @@ export function CoursesPage() {
                   size="sm"
                   onClick={() => handlePageChange(safeCurrentPage + 1)}
                   disabled={safeCurrentPage === totalPages}
-                  className="h-8 w-8 p-0 text-[#5A6178] hover:text-white hover:bg-[#4F46E5]/10 disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer"
+                  className="h-8 w-8 p-0 text-muted-foreground/70 hover:text-foreground hover:bg-primary/10 disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer"
                 >
                   <ChevronRight className="w-4 h-4" />
                 </Button>
@@ -560,25 +560,25 @@ export function CoursesPage() {
 
       {/* ── Course Preview Dialog ── */}
       <Dialog open={!!previewCourse} onOpenChange={(open) => !open && setPreviewCourse(null)}>
-        <DialogContent className="bg-[#1D2030] border-[#2B2F3E] shadow-2xl max-w-lg">
+        <DialogContent className="bg-popover border-border shadow-2xl max-w-lg">
           {previewCourse && (
             <>
               <DialogHeader>
-                <DialogTitle className="text-lg font-display font-bold text-white flex items-center gap-2">
-                  <Eye className="w-5 h-5 text-[#4F46E5]" />
+                <DialogTitle className="text-lg font-display font-bold text-foreground flex items-center gap-2">
+                  <Eye className="w-5 h-5 text-primary" />
                   Course Preview
                 </DialogTitle>
               </DialogHeader>
 
               <div className="space-y-5 py-2">
                 {/* Thumbnail placeholder */}
-                <div className="w-full h-36 rounded-xl bg-gradient-to-br from-[#4F46E5]/20 via-[#12131A] to-[#06B6D4]/10 border border-[#2B2F3E] flex items-center justify-center">
-                  <BookOpen className="w-12 h-12 text-[#4F46E5]/40" />
+                <div className="w-full h-36 rounded-xl bg-gradient-to-br from-primary/20 via-card to-[#06B6D4]/10 border border-border flex items-center justify-center">
+                  <BookOpen className="w-12 h-12 text-primary/40" />
                 </div>
 
                 {/* Title & Status */}
                 <div>
-                  <h3 className="text-base font-semibold text-white leading-snug">
+                  <h3 className="text-base font-semibold text-foreground leading-snug">
                     {previewCourse.title}
                   </h3>
                   <div className="flex items-center gap-3 mt-2">
@@ -590,7 +590,7 @@ export function CoursesPage() {
                     </Badge>
                     <Badge
                       variant="outline"
-                      className="text-xs font-normal bg-[#12131A] border-[#2B2F3E] text-[#B6BCC8]"
+                      className="text-xs font-normal bg-card border-border text-foreground/80"
                     >
                       {previewCourse.categoryName}
                     </Badge>
@@ -599,72 +599,72 @@ export function CoursesPage() {
 
                 {/* Description */}
                 <div>
-                  <Label className="text-xs text-[#7C8597] uppercase tracking-wider font-semibold">
+                  <Label className="text-xs text-muted-foreground uppercase tracking-wider font-semibold">
                     Description
                   </Label>
-                  <p className="text-sm text-[#B6BCC8] mt-1.5 leading-relaxed">
+                  <p className="text-sm text-foreground/80 mt-1.5 leading-relaxed">
                     {previewCourse.description}
                   </p>
                 </div>
 
                 {/* Details grid */}
                 <div className="grid grid-cols-2 gap-3">
-                  <div className="rounded-lg bg-[#12131A] border border-[#2B2F3E] p-3">
-                    <p className="text-[10px] uppercase tracking-wider text-[#5A6178] font-semibold">
+                  <div className="rounded-lg bg-card border border-border p-3">
+                    <p className="text-[10px] uppercase tracking-wider text-muted-foreground/70 font-semibold">
                       Instructor
                     </p>
-                    <p className="text-sm text-white font-medium mt-1">
+                    <p className="text-sm text-foreground font-medium mt-1">
                       {previewCourse.instructorName}
                     </p>
                   </div>
-                  <div className="rounded-lg bg-[#12131A] border border-[#2B2F3E] p-3">
-                    <p className="text-[10px] uppercase tracking-wider text-[#5A6178] font-semibold">
+                  <div className="rounded-lg bg-card border border-border p-3">
+                    <p className="text-[10px] uppercase tracking-wider text-muted-foreground/70 font-semibold">
                       Price
                     </p>
-                    <p className="text-sm text-white font-medium mt-1">
+                    <p className="text-sm text-foreground font-medium mt-1">
                       {formatCurrency(previewCourse.price)}
                     </p>
                   </div>
-                  <div className="rounded-lg bg-[#12131A] border border-[#2B2F3E] p-3">
-                    <p className="text-[10px] uppercase tracking-wider text-[#5A6178] font-semibold">
+                  <div className="rounded-lg bg-card border border-border p-3">
+                    <p className="text-[10px] uppercase tracking-wider text-muted-foreground/70 font-semibold">
                       Enrolled
                     </p>
-                    <p className="text-sm text-white font-medium mt-1">
+                    <p className="text-sm text-foreground font-medium mt-1">
                       {previewCourse.enrolledCount.toLocaleString()} students
                     </p>
                   </div>
-                  <div className="rounded-lg bg-[#12131A] border border-[#2B2F3E] p-3">
-                    <p className="text-[10px] uppercase tracking-wider text-[#5A6178] font-semibold">
+                  <div className="rounded-lg bg-card border border-border p-3">
+                    <p className="text-[10px] uppercase tracking-wider text-muted-foreground/70 font-semibold">
                       Rating
                     </p>
                     <div className="mt-1">
                       <StarRating rating={previewCourse.rating} />
                     </div>
                   </div>
-                  <div className="rounded-lg bg-[#12131A] border border-[#2B2F3E] p-3">
-                    <p className="text-[10px] uppercase tracking-wider text-[#5A6178] font-semibold">
+                  <div className="rounded-lg bg-card border border-border p-3">
+                    <p className="text-[10px] uppercase tracking-wider text-muted-foreground/70 font-semibold">
                       Created
                     </p>
-                    <p className="text-sm text-white font-medium mt-1">
+                    <p className="text-sm text-foreground font-medium mt-1">
                       {formatDateTime(previewCourse.createdAt)}
                     </p>
                   </div>
-                  <div className="rounded-lg bg-[#12131A] border border-[#2B2F3E] p-3">
-                    <p className="text-[10px] uppercase tracking-wider text-[#5A6178] font-semibold">
+                  <div className="rounded-lg bg-card border border-border p-3">
+                    <p className="text-[10px] uppercase tracking-wider text-muted-foreground/70 font-semibold">
                       Updated
                     </p>
-                    <p className="text-sm text-white font-medium mt-1">
+                    <p className="text-sm text-foreground font-medium mt-1">
                       {formatDateTime(previewCourse.updatedAt)}
                     </p>
                   </div>
                 </div>
 
                 {previewCourse.publishedAt && (
-                  <div className="rounded-lg bg-[#12131A] border border-[#2B2F3E] p-3">
-                    <p className="text-[10px] uppercase tracking-wider text-[#5A6178] font-semibold">
+                  <div className="rounded-lg bg-card border border-border p-3">
+                    <p className="text-[10px] uppercase tracking-wider text-muted-foreground/70 font-semibold">
                       Published At
                     </p>
-                    <p className="text-sm text-white font-medium mt-1">
+                    <p className="text-sm text-foreground font-medium mt-1">
                       {formatDateTime(previewCourse.publishedAt)}
                     </p>
                   </div>
@@ -704,7 +704,7 @@ export function CoursesPage() {
                 <Button
                   variant="ghost"
                   onClick={() => setPreviewCourse(null)}
-                  className="text-[#7C8597] hover:text-white hover:bg-[#2B2F3E] text-sm h-9 cursor-pointer"
+                  className="text-muted-foreground hover:text-foreground hover:bg-muted text-sm h-9 cursor-pointer"
                 >
                   Close
                 </Button>

@@ -126,10 +126,10 @@ export function AgentsPage() {
     <div className="space-y-6">
       {/* Header */}
       <div>
-        <h1 className="text-2xl font-bold text-white tracking-tight">
+        <h1 className="text-2xl font-bold text-foreground tracking-tight">
           Agents &amp; Point of Sale
         </h1>
-        <p className="text-sm text-[#7C8597] mt-1">
+        <p className="text-sm text-muted-foreground mt-1">
           Manage agents, balances, and transaction history
         </p>
       </div>
@@ -139,15 +139,15 @@ export function AgentsPage() {
         {stats.map((stat) => (
           <Card
             key={stat.label}
-            className="bg-[#12131A] border-[#2B2F3E] shadow-none"
+            className="bg-card border-border shadow-none"
           >
             <CardContent className="p-4">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-xs font-medium text-[#7C8597] uppercase tracking-wider">
+                  <p className="text-xs font-medium text-muted-foreground uppercase tracking-wider">
                     {stat.label}
                   </p>
-                  <p className="text-xl font-bold text-white mt-1">{stat.value}</p>
+                  <p className="text-xl font-bold text-foreground mt-1">{stat.value}</p>
                 </div>
                 <div
                   className={`w-10 h-10 rounded-xl ${stat.bg} flex items-center justify-center`}
@@ -162,16 +162,16 @@ export function AgentsPage() {
 
       {/* Tabs */}
       <Tabs defaultValue="agents" className="space-y-4">
-        <TabsList className="bg-[#12131A] border border-[#2B2F3E] p-1 h-10">
+        <TabsList className="bg-card border border-border p-1 h-10">
           <TabsTrigger
             value="agents"
-            className="data-[state=active]:bg-[#1D2030] data-[state=active]:text-white text-[#7C8597] text-sm font-medium rounded-lg px-4 transition-colors"
+            className="data-[state=active]:bg-card data-[state=active]:text-foreground text-muted-foreground text-sm font-medium rounded-lg px-4 transition-colors"
           >
             Agents
           </TabsTrigger>
           <TabsTrigger
             value="transactions"
-            className="data-[state=active]:bg-[#1D2030] data-[state=active]:text-white text-[#7C8597] text-sm font-medium rounded-lg px-4 transition-colors"
+            className="data-[state=active]:bg-card data-[state=active]:text-foreground text-muted-foreground text-sm font-medium rounded-lg px-4 transition-colors"
           >
             Transactions
           </TabsTrigger>
@@ -179,9 +179,9 @@ export function AgentsPage() {
 
         {/* Agents Tab */}
         <TabsContent value="agents" className="mt-4">
-          <Card className="bg-[#12131A] border-[#2B2F3E] shadow-none">
+          <Card className="bg-card border-border shadow-none">
             <CardHeader className="pb-3">
-              <CardTitle className="text-base font-semibold text-white">
+              <CardTitle className="text-base font-semibold text-foreground">
                 All Agents
               </CardTitle>
             </CardHeader>
@@ -189,26 +189,26 @@ export function AgentsPage() {
               <div className="overflow-x-auto">
                 <Table>
                   <TableHeader>
-                    <TableRow className="border-b border-[#2B2F3E] hover:bg-transparent">
-                      <TableHead className="text-[#7C8597] text-xs font-medium uppercase tracking-wider">
+                    <TableRow className="border-b border-border hover:bg-transparent">
+                      <TableHead className="text-muted-foreground text-xs font-medium uppercase tracking-wider">
                         Name
                       </TableHead>
-                      <TableHead className="text-[#7C8597] text-xs font-medium uppercase tracking-wider">
+                      <TableHead className="text-muted-foreground text-xs font-medium uppercase tracking-wider">
                         Email
                       </TableHead>
-                      <TableHead className="text-[#7C8597] text-xs font-medium uppercase tracking-wider">
+                      <TableHead className="text-muted-foreground text-xs font-medium uppercase tracking-wider">
                         Balance
                       </TableHead>
-                      <TableHead className="text-[#7C8597] text-xs font-medium uppercase tracking-wider">
+                      <TableHead className="text-muted-foreground text-xs font-medium uppercase tracking-wider">
                         Total Spent
                       </TableHead>
-                      <TableHead className="text-[#7C8597] text-xs font-medium uppercase tracking-wider">
+                      <TableHead className="text-muted-foreground text-xs font-medium uppercase tracking-wider">
                         Transactions
                       </TableHead>
-                      <TableHead className="text-[#7C8597] text-xs font-medium uppercase tracking-wider">
+                      <TableHead className="text-muted-foreground text-xs font-medium uppercase tracking-wider">
                         Status
                       </TableHead>
-                      <TableHead className="text-[#7C8597] text-xs font-medium uppercase tracking-wider text-right">
+                      <TableHead className="text-muted-foreground text-xs font-medium uppercase tracking-wider text-right">
                         Actions
                       </TableHead>
                     </TableRow>
@@ -217,20 +217,20 @@ export function AgentsPage() {
                     {agents.map((agent) => (
                       <TableRow
                         key={agent.id}
-                        className="border-b border-[#1D2030] hover:bg-[#1D2030]/50"
+                        className="border-b border-border/50 hover:bg-muted/50"
                       >
                         <TableCell>
                           <div className="flex items-center gap-3">
                             <div className="w-9 h-9 rounded-lg bg-[#4F46E5]/10 flex items-center justify-center shrink-0">
                               <Store className="w-4 h-4 text-[#4F46E5]" />
                             </div>
-                            <span className="text-sm font-medium text-white">
+                            <span className="text-sm font-medium text-foreground">
                               {agent.name}
                             </span>
                           </div>
                         </TableCell>
                         <TableCell>
-                          <span className="text-sm text-[#7C8597]">
+                          <span className="text-sm text-muted-foreground">
                             {agent.email}
                           </span>
                         </TableCell>
@@ -240,12 +240,12 @@ export function AgentsPage() {
                           </span>
                         </TableCell>
                         <TableCell>
-                          <span className="text-sm text-[#B6BCC8]">
+                          <span className="text-sm text-foreground/80">
                             {formatCurrency(agent.totalSpent)}
                           </span>
                         </TableCell>
                         <TableCell>
-                          <span className="text-sm text-[#B6BCC8]">
+                          <span className="text-sm text-foreground/80">
                             {agent.transactionCount}
                           </span>
                         </TableCell>
@@ -301,9 +301,9 @@ export function AgentsPage() {
 
         {/* Transactions Tab */}
         <TabsContent value="transactions" className="mt-4">
-          <Card className="bg-[#12131A] border-[#2B2F3E] shadow-none">
+          <Card className="bg-card border-border shadow-none">
             <CardHeader className="pb-3">
-              <CardTitle className="text-base font-semibold text-white">
+              <CardTitle className="text-base font-semibold text-foreground">
                 Transaction History
               </CardTitle>
             </CardHeader>
@@ -311,23 +311,23 @@ export function AgentsPage() {
               <div className="overflow-x-auto">
                 <Table>
                   <TableHeader>
-                    <TableRow className="border-b border-[#2B2F3E] hover:bg-transparent">
-                      <TableHead className="text-[#7C8597] text-xs font-medium uppercase tracking-wider">
+                    <TableRow className="border-b border-border hover:bg-transparent">
+                      <TableHead className="text-muted-foreground text-xs font-medium uppercase tracking-wider">
                         Agent
                       </TableHead>
-                      <TableHead className="text-[#7C8597] text-xs font-medium uppercase tracking-wider">
+                      <TableHead className="text-muted-foreground text-xs font-medium uppercase tracking-wider">
                         Type
                       </TableHead>
-                      <TableHead className="text-[#7C8597] text-xs font-medium uppercase tracking-wider">
+                      <TableHead className="text-muted-foreground text-xs font-medium uppercase tracking-wider">
                         Amount
                       </TableHead>
-                      <TableHead className="text-[#7C8597] text-xs font-medium uppercase tracking-wider">
+                      <TableHead className="text-muted-foreground text-xs font-medium uppercase tracking-wider">
                         Balance After
                       </TableHead>
-                      <TableHead className="text-[#7C8597] text-xs font-medium uppercase tracking-wider">
+                      <TableHead className="text-muted-foreground text-xs font-medium uppercase tracking-wider">
                         Description
                       </TableHead>
-                      <TableHead className="text-[#7C8597] text-xs font-medium uppercase tracking-wider">
+                      <TableHead className="text-muted-foreground text-xs font-medium uppercase tracking-wider">
                         Date
                       </TableHead>
                     </TableRow>
@@ -336,10 +336,10 @@ export function AgentsPage() {
                     {mockTransactions.map((txn) => (
                       <TableRow
                         key={txn.id}
-                        className="border-b border-[#1D2030] hover:bg-[#1D2030]/50"
+                        className="border-b border-border/50 hover:bg-muted/50"
                       >
                         <TableCell>
-                          <span className="text-sm font-medium text-white">
+                          <span className="text-sm font-medium text-foreground">
                             {getAgentName(txn.agentId)}
                           </span>
                         </TableCell>
@@ -380,19 +380,19 @@ export function AgentsPage() {
                           </span>
                         </TableCell>
                         <TableCell>
-                          <span className="text-sm text-[#B6BCC8]">
+                          <span className="text-sm text-foreground/80">
                             {formatCurrency(txn.balanceAfter)}
                           </span>
                         </TableCell>
                         <TableCell>
-                          <span className="text-sm text-[#7C8597] max-w-[200px] truncate block">
+                          <span className="text-sm text-muted-foreground max-w-[200px] truncate block">
                             {txn.description}
                           </span>
                         </TableCell>
                         <TableCell>
                           <div className="flex items-center gap-1.5">
-                            <Clock className="w-3 h-3 text-[#5A6178]" />
-                            <span className="text-sm text-[#7C8597]">
+                            <Clock className="w-3 h-3 text-muted-foreground/70" />
+                            <span className="text-sm text-muted-foreground">
                               {formatDateTime(txn.createdAt)}
                             </span>
                           </div>
@@ -409,25 +409,25 @@ export function AgentsPage() {
 
       {/* Recharge Dialog */}
       <Dialog open={rechargeDialogOpen} onOpenChange={setRechargeDialogOpen}>
-        <DialogContent className="bg-[#12131A] border-[#2B2F3E] sm:max-w-[420px]">
+        <DialogContent className="bg-popover border-border sm:max-w-[420px]">
           <DialogHeader>
-            <DialogTitle className="text-white">
+            <DialogTitle className="text-foreground">
               Recharge Agent Wallet
             </DialogTitle>
-            <DialogDescription className="text-[#7C8597]">
+            <DialogDescription className="text-muted-foreground">
               Add funds to{' '}
-              <span className="text-white font-medium">
+              <span className="text-foreground font-medium">
                 {agents.find((a) => a.id === selectedAgent)?.name}
               </span>
             </DialogDescription>
           </DialogHeader>
           <div className="space-y-4 py-2">
             <div className="space-y-2">
-              <Label className="text-sm text-[#B6BCC8] font-medium">
+              <Label className="text-sm text-foreground/80 font-medium">
                 Amount (USD)
               </Label>
               <div className="relative">
-                <DollarSign className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#5A6178]" />
+                <DollarSign className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground/70" />
                 <Input
                   type="number"
                   placeholder="0.00"
@@ -435,10 +435,10 @@ export function AgentsPage() {
                   step="0.01"
                   value={rechargeAmount}
                   onChange={(e) => setRechargeAmount(e.target.value)}
-                  className="h-11 pl-10 pr-4 rounded-xl bg-[#0B0B12] border-[#2B2F3E] text-white placeholder:text-[#5A6178] text-sm focus-visible:border-[#4F46E5] focus-visible:ring-[#4F46E5]/20"
+                  className="h-11 pl-10 pr-4 rounded-xl bg-background border-border text-foreground placeholder:text-muted-foreground text-sm focus-visible:border-[#4F46E5] focus-visible:ring-[#4F46E5]/20"
                 />
               </div>
-              <p className="text-xs text-[#5A6178]">
+              <p className="text-xs text-muted-foreground/70">
                 Current balance:{' '}
                 <span className="text-emerald-400">
                   {formatCurrency(
@@ -453,7 +453,7 @@ export function AgentsPage() {
                   key={preset}
                   size="sm"
                   variant="outline"
-                  className="flex-1 h-9 text-xs bg-[#0B0B12] border-[#2B2F3E] text-[#B6BCC8] hover:bg-[#1D2030] hover:text-white hover:border-[#4F46E5]/30"
+                  className="flex-1 h-9 text-xs bg-background border-border text-foreground/80 hover:bg-muted hover:text-foreground hover:border-[#4F46E5]/30"
                   onClick={() => setRechargeAmount(String(preset))}
                 >
                   {formatCurrency(preset)}
@@ -464,7 +464,7 @@ export function AgentsPage() {
           <DialogFooter className="gap-2 pt-2">
             <Button
               variant="outline"
-              className="bg-transparent border-[#2B2F3E] text-[#B6BCC8] hover:bg-[#1D2030] hover:text-white"
+              className="bg-transparent border-border text-foreground/80 hover:bg-muted hover:text-foreground"
               onClick={() => setRechargeDialogOpen(false)}
             >
               Cancel
