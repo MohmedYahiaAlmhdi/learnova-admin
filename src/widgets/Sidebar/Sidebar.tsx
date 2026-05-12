@@ -2,6 +2,7 @@
 
 import React, { useCallback, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import Image from 'next/image';
 import {
   LayoutDashboard,
   Users,
@@ -108,7 +109,7 @@ function NavItemButton({ item, isActive, isCollapsed, onClick }: NavItemButtonPr
             animate="visible"
             exit="exit"
             transition={{ duration: 0.2, ease: 'easeOut' }}
-            className="absolute left-0 top-1/2 -translate-y-1/2 h-5 w-[3px] rounded-r-full bg-[#4F46E5]"
+            className="absolute left-0 top-1/2 -translate-y-1/2 h-5 w-[3px] rounded-r-full bg-primary"
           />
         )}
       </AnimatePresence>
@@ -122,7 +123,7 @@ function NavItemButton({ item, isActive, isCollapsed, onClick }: NavItemButtonPr
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.25, ease: 'easeOut' }}
-            className="absolute inset-0 rounded-lg bg-[rgba(79,70,229,0.12)]"
+            className="absolute inset-0 rounded-lg bg-primary/10"
           />
         )}
       </AnimatePresence>
@@ -131,7 +132,7 @@ function NavItemButton({ item, isActive, isCollapsed, onClick }: NavItemButtonPr
       <span
         className={cn(
           'relative z-10 shrink-0 transition-colors duration-200',
-          isActive ? 'text-[#4F46E5]' : 'text-sidebar-foreground group-hover:text-sidebar-accent-foreground'
+          isActive ? 'text-primary' : 'text-sidebar-foreground group-hover:text-sidebar-accent-foreground'
         )}
       >
         <Icon className="h-[20px] w-[20px]" strokeWidth={isActive ? 2 : 1.75} />
@@ -163,7 +164,7 @@ function NavItemButton({ item, isActive, isCollapsed, onClick }: NavItemButtonPr
               animate="expanded"
               exit="collapsed"
               transition={{ duration: 0.15, ease: 'easeInOut' }}
-              className="relative z-10 ml-auto flex items-center justify-center min-w-[20px] h-5 px-1.5 rounded-full bg-[#4F46E5] text-white text-[10px] font-semibold leading-none"
+              className="relative z-10 ml-auto flex items-center justify-center min-w-[20px] h-5 px-1.5 rounded-full bg-primary text-primary-foreground text-[10px] font-semibold leading-none"
             >
               {item.badge > 99 ? '99+' : item.badge}
             </motion.span>
@@ -180,11 +181,11 @@ function NavItemButton({ item, isActive, isCollapsed, onClick }: NavItemButtonPr
         <TooltipContent
           side="right"
           sideOffset={12}
-          className="bg-[#1D2030] border-[#2B2F3E] text-sidebar-accent-foreground font-body text-xs px-3 py-1.5 rounded-lg shadow-xl"
+          className="bg-card border-border text-sidebar-accent-foreground font-body text-xs px-3 py-1.5 rounded-lg shadow-xl"
         >
           <span className="flex items-center gap-1.5">
             {item.badge != null && item.badge > 0 && (
-              <Badge className="h-4 min-w-[16px] px-1 text-[9px] bg-[#4F46E5] text-white border-0 rounded-full">
+              <Badge className="h-4 min-w-[16px] px-1 text-[9px] bg-primary text-primary-foreground border-0 rounded-full">
                 {item.badge > 99 ? '99+' : item.badge}
               </Badge>
             )}
@@ -228,9 +229,9 @@ function UserProfileSection({ isCollapsed }: { isCollapsed: boolean }) {
         isCollapsed ? 'justify-center px-0' : ''
       )}
     >
-      <Avatar className={cn('shrink-0 border-2 border-[#2B2F3E] transition-colors', !isCollapsed && 'h-9 w-9')}>
+      <Avatar className={cn('shrink-0 border-2 border-border transition-colors', !isCollapsed && 'h-9 w-9')}>
         <AvatarImage src={user?.avatar} alt={user?.name || 'User'} />
-        <AvatarFallback className="bg-[#4F46E5]/20 text-[#4F46E5] text-xs font-semibold font-body">
+        <AvatarFallback className="bg-primary/20 text-primary text-xs font-semibold font-body">
           {initials}
         </AvatarFallback>
       </Avatar>
@@ -276,7 +277,7 @@ function UserProfileSection({ isCollapsed }: { isCollapsed: boolean }) {
         <TooltipContent
           side="right"
           sideOffset={12}
-          className="bg-[#1D2030] border-[#2B2F3E] text-sidebar-accent-foreground font-body text-xs px-3 py-1.5 rounded-lg shadow-xl"
+          className="bg-card border-border text-sidebar-accent-foreground font-body text-xs px-3 py-1.5 rounded-lg shadow-xl"
         >
           <span className="flex flex-col">
             <span className="font-semibold">{user?.name || 'User'}</span>
@@ -299,9 +300,9 @@ function SidebarBrand({ isCollapsed }: { isCollapsed: boolean }) {
         isCollapsed ? 'justify-center px-0' : ''
       )}
     >
-      {/* Logo mark */}
-      <div className="relative shrink-0 flex items-center justify-center h-9 w-9 rounded-xl bg-gradient-to-br from-[#4F46E5] to-[#7C3AED] shadow-lg shadow-[#4F46E5]/20">
-        <Shield className="h-[18px] w-[18px] text-white" strokeWidth={2.2} />
+      {/* Logo */}
+      <div className="relative shrink-0 flex items-center justify-center h-9 w-9 rounded-xl overflow-hidden bg-gradient-to-br from-[#4F46E5] to-[#7C3AED] shadow-lg shadow-[#4F46E5]/20">
+        <Image src="/learnova-logo.jpg" alt="Learnova" width={36} height={36} className="object-cover" />
       </div>
 
       <AnimatePresence>
@@ -333,7 +334,7 @@ function SidebarBrand({ isCollapsed }: { isCollapsed: boolean }) {
         <TooltipContent
           side="right"
           sideOffset={12}
-          className="bg-[#1D2030] border-[#2B2F3E] text-sidebar-accent-foreground font-body text-xs px-3 py-1.5 rounded-lg shadow-xl"
+          className="bg-card border-border text-sidebar-accent-foreground font-body text-xs px-3 py-1.5 rounded-lg shadow-xl"
         >
           <span className="font-display font-semibold">Learnova</span>
         </TooltipContent>
@@ -392,7 +393,7 @@ function CollapseToggle({ isCollapsed, onClick }: { isCollapsed: boolean; onClic
         <TooltipContent
           side="right"
           sideOffset={12}
-          className="bg-[#1D2030] border-[#2B2F3E] text-sidebar-accent-foreground font-body text-xs px-3 py-1.5 rounded-lg shadow-xl"
+          className="bg-card border-border text-sidebar-accent-foreground font-body text-xs px-3 py-1.5 rounded-lg shadow-xl"
         >
           Expand sidebar
         </TooltipContent>
@@ -441,7 +442,7 @@ function SidebarInner({ isCollapsed, onNavigate, onToggleCollapse, isMobile }: S
       {/* Brand */}
       <SidebarBrand isCollapsed={isCollapsed} />
 
-      <Separator className="bg-[#1E2030] mx-3 w-auto" />
+      <Separator className="mx-3 w-auto" />
 
       {/* Navigation items */}
       <ScrollArea className="flex-1 px-2 py-3">
@@ -458,7 +459,7 @@ function SidebarInner({ isCollapsed, onNavigate, onToggleCollapse, isMobile }: S
         </nav>
       </ScrollArea>
 
-      <Separator className="bg-[#1E2030] mx-3 w-auto" />
+      <Separator className="mx-3 w-auto" />
 
       {/* Bottom section */}
       <div className="px-2 py-2 flex flex-col gap-1">
@@ -492,7 +493,7 @@ function MobileSidebar() {
     <Sheet open={sidebarOpen} onOpenChange={setSidebarOpen}>
       <SheetContent
         side="left"
-        className="w-[280px] p-0 bg-[#0E0F16] border-r border-[#1E2030] [&>button]:hidden"
+        className="w-[280px] p-0 bg-sidebar border-r border-sidebar-border [&>button]:hidden"
       >
         <SheetTitle className="sr-only">Navigation Menu</SheetTitle>
         <div className="h-full">
@@ -536,16 +537,16 @@ export function Sidebar() {
       transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
       className={cn(
         'fixed left-0 top-0 z-40 h-screen flex flex-col',
-        'bg-[#0E0F16] border-r border-[#1E2030]',
+        'bg-sidebar border-r border-sidebar-border',
         'overflow-hidden select-none'
       )}
       aria-label="Sidebar navigation"
     >
       {/* Subtle top gradient glow */}
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-[#4F46E5]/[0.04] to-transparent" />
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-primary/[0.04] to-transparent" />
 
       {/* Subtle left accent line */}
-      <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-px bg-gradient-to-b from-[#4F46E5]/30 via-[#4F46E5]/10 to-transparent" />
+      <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-px bg-gradient-to-b from-primary/30 via-primary/10 to-transparent" />
 
       <SidebarInner
         isCollapsed={sidebarCollapsed}

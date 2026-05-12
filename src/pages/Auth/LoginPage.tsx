@@ -5,7 +5,9 @@ import { motion } from 'framer-motion';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
-import { Eye, EyeOff, Lock, Mail, GraduationCap, ArrowRight, AlertCircle, Loader2, ShieldCheck, Sparkles, BookOpen } from 'lucide-react';
+import { Eye, EyeOff, Lock, Mail, GraduationCap, ArrowRight, AlertCircle, Loader2, ShieldCheck, Sparkles, BookOpen, Sun, Moon } from 'lucide-react';
+import Image from 'next/image';
+import { useTheme } from 'next-themes';
 
 import { useAuthStore, useNavigationStore } from '@/app/store';
 import { Button } from '@/components/ui/button';
@@ -79,6 +81,7 @@ const floatingOrbVariants = {
 /* ── Component ── */
 export function LoginPage() {
   const [showPassword, setShowPassword] = useState(false);
+  const { theme, setTheme } = useTheme();
 
   const { login, isLoading, error, clearError } = useAuthStore();
   const { navigate } = useNavigationStore();
@@ -107,7 +110,7 @@ export function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen flex bg-[#0B0B12]">
+    <div className="min-h-screen flex bg-background">
       {/* ── Left Decorative Panel ── */}
       <motion.div
         className="hidden lg:flex lg:w-[480px] xl:w-[540px] relative overflow-hidden"
@@ -116,7 +119,7 @@ export function LoginPage() {
         animate="visible"
       >
         {/* Background Gradient */}
-        <div className="absolute inset-0 bg-gradient-to-br from-[#4F46E5]/20 via-[#0B0B12] to-[#06B6D4]/15" />
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-background to-accent/15" />
 
         {/* Grid Pattern Overlay */}
         <div
@@ -129,21 +132,21 @@ export function LoginPage() {
         />
 
         {/* Radial Glow */}
-        <div className="absolute top-[-20%] left-[-20%] w-[500px] h-[500px] rounded-full bg-[#4F46E5]/10 blur-[120px]" />
-        <div className="absolute bottom-[-10%] right-[-10%] w-[400px] h-[400px] rounded-full bg-[#06B6D4]/8 blur-[100px]" />
+        <div className="absolute top-[-20%] left-[-20%] w-[500px] h-[500px] rounded-full bg-primary/10 blur-[120px]" />
+        <div className="absolute bottom-[-10%] right-[-10%] w-[400px] h-[400px] rounded-full bg-accent/8 blur-[100px]" />
 
         {/* Content */}
         <div className="relative z-10 flex flex-col justify-between p-10 xl:p-14 w-full">
           {/* Top: Brand */}
           <div className="flex items-center gap-3">
-            <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-[#4F46E5] to-[#06B6D4] flex items-center justify-center shadow-lg shadow-[#4F46E5]/25">
-              <GraduationCap className="w-6 h-6 text-white" />
+            <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-primary to-accent flex items-center justify-center shadow-lg shadow-primary/25 overflow-hidden">
+              <Image src="/learnova-logo.jpg" alt="Learnova" width={44} height={44} className="object-cover" />
             </div>
             <div>
-              <h1 className="text-xl font-display font-bold text-white tracking-tight">
+              <h1 className="text-xl font-display font-bold text-foreground tracking-tight">
                 Learnova
               </h1>
-              <p className="text-[11px] text-[#7C8597] font-medium tracking-wide uppercase">
+              <p className="text-[11px] text-muted-foreground font-medium tracking-wide uppercase">
                 Admin Panel
               </p>
             </div>
@@ -179,17 +182,17 @@ export function LoginPage() {
               initial="hidden"
               animate="visible"
             >
-              <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#4F46E5]/20 to-[#4F46E5]/5 border border-[#4F46E5]/20 flex items-center justify-center mb-5">
-                <ShieldCheck className="w-7 h-7 text-[#4F46E5]" />
+              <div className="w-14 h-14 rounded-2xl bg-primary/20 border border-primary/20 flex items-center justify-center mb-5">
+                <ShieldCheck className="w-7 h-7 text-primary" />
               </div>
-              <h2 className="text-2xl xl:text-3xl font-display font-bold text-white leading-tight mb-3">
+              <h2 className="text-2xl xl:text-3xl font-display font-bold text-foreground leading-tight mb-3">
                 Enterprise-grade{' '}
-                <span className="bg-gradient-to-r from-[#4F46E5] to-[#06B6D4] bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
                   security
                 </span>{' '}
                 & control
               </h2>
-              <p className="text-[#7C8597] text-sm leading-relaxed max-w-[320px]">
+              <p className="text-muted-foreground text-sm leading-relaxed max-w-[320px]">
                 Manage your entire learning ecosystem from a single, powerful
                 dashboard built for modern teams.
               </p>
@@ -230,14 +233,14 @@ export function LoginPage() {
                     },
                   }}
                 >
-                  <div className="w-9 h-9 rounded-lg bg-[#1D2030]/80 border border-[#2B2F3E] flex items-center justify-center shrink-0 group-hover:border-[#4F46E5]/30 transition-colors">
-                    <feature.icon className="w-4 h-4 text-[#B6BCC8] group-hover:text-[#06B6D4] transition-colors" />
+                  <div className="w-9 h-9 rounded-lg bg-card/80 border border-border flex items-center justify-center shrink-0 group-hover:border-primary/30 transition-colors">
+                    <feature.icon className="w-4 h-4 text-muted-foreground group-hover:text-accent transition-colors" />
                   </div>
                   <div>
-                    <p className="text-sm font-medium text-[#B6BCC8] group-hover:text-white transition-colors">
+                    <p className="text-sm font-medium text-muted-foreground group-hover:text-foreground transition-colors">
                       {feature.title}
                     </p>
-                    <p className="text-xs text-[#5A6178]">{feature.desc}</p>
+                    <p className="text-xs text-muted-foreground/60">{feature.desc}</p>
                   </div>
                 </motion.div>
               ))}
@@ -246,10 +249,10 @@ export function LoginPage() {
 
           {/* Bottom: Trusted By */}
           <div className="relative z-10">
-            <div className="h-px bg-gradient-to-r from-transparent via-[#2B2F3E] to-transparent mb-4" />
-            <p className="text-xs text-[#5A6178]">
+            <div className="h-px bg-gradient-to-r from-transparent via-border to-transparent mb-4" />
+            <p className="text-xs text-muted-foreground/60">
               Trusted by{' '}
-              <span className="text-[#7C8597] font-medium">2,000+</span>{' '}
+              <span className="text-muted-foreground font-medium">2,000+</span>{' '}
               educators worldwide
             </p>
           </div>
@@ -269,14 +272,14 @@ export function LoginPage() {
             className="lg:hidden flex items-center gap-3 mb-10"
             variants={itemVariants}
           >
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#4F46E5] to-[#06B6D4] flex items-center justify-center shadow-lg shadow-[#4F46E5]/25">
-              <GraduationCap className="w-5 h-5 text-white" />
+            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-accent flex items-center justify-center shadow-lg shadow-primary/25 overflow-hidden">
+              <Image src="/learnova-logo.jpg" alt="Learnova" width={40} height={40} className="object-cover" />
             </div>
             <div>
-              <h1 className="text-lg font-display font-bold text-white tracking-tight">
+              <h1 className="text-lg font-display font-bold text-foreground tracking-tight">
                 Learnova
               </h1>
-              <p className="text-[10px] text-[#7C8597] font-medium tracking-wider uppercase">
+              <p className="text-[10px] text-muted-foreground font-medium tracking-wider uppercase">
                 Admin Panel
               </p>
             </div>
@@ -284,10 +287,10 @@ export function LoginPage() {
 
           {/* Header */}
           <motion.div className="mb-8" variants={itemVariants}>
-            <h2 className="text-2xl sm:text-[28px] font-display font-bold text-white tracking-tight mb-2">
+            <h2 className="text-2xl sm:text-[28px] font-display font-bold text-foreground tracking-tight mb-2">
               Welcome back
             </h2>
-            <p className="text-[#7C8597] text-sm">
+            <p className="text-muted-foreground text-sm">
               Sign in to your admin account to continue
             </p>
           </motion.div>
@@ -298,14 +301,14 @@ export function LoginPage() {
               initial={{ opacity: 0, y: -8, scale: 0.96 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               transition={{ duration: 0.3 }}
-              className="mb-6 flex items-start gap-3 p-3.5 rounded-xl bg-[#EF4444]/8 border border-[#EF4444]/15"
+              className="mb-6 flex items-start gap-3 p-3.5 rounded-xl bg-destructive/8 border border-destructive/15"
             >
-              <AlertCircle className="w-4.5 h-4.5 text-[#EF4444] shrink-0 mt-0.5" />
+              <AlertCircle className="w-4.5 h-4.5 text-destructive shrink-0 mt-0.5" />
               <div>
-                <p className="text-sm font-medium text-[#FCA5A5]">
+                <p className="text-sm font-medium text-destructive">
                   Authentication failed
                 </p>
-                <p className="text-xs text-[#EF4444]/70 mt-0.5">{error}</p>
+                <p className="text-xs text-destructive/70 mt-0.5">{error}</p>
               </div>
             </motion.div>
           )}
@@ -323,22 +326,22 @@ export function LoginPage() {
                   name="email"
                   render={({ field }) => (
                     <FormItem>
-                      <Label className="text-[#B6BCC8] text-sm font-medium mb-1.5">
+                      <Label className="text-muted-foreground text-sm font-medium mb-1.5">
                         Email address
                       </Label>
                       <FormControl>
                         <div className="relative">
-                          <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#5A6178] pointer-events-none" />
+                          <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground/50 pointer-events-none" />
                           <Input
                             {...field}
                             type="email"
                             placeholder="admin@learnova.com"
                             autoComplete="email"
-                            className="h-11 pl-10 pr-4 rounded-xl bg-[#12131A] border-[#2B2F3E] text-white placeholder:text-[#5A6178] text-sm transition-colors focus-visible:border-[#4F46E5] focus-visible:ring-[#4F46E5]/20"
+                            className="h-11 pl-10 pr-4 rounded-xl bg-muted/50 border-border text-foreground placeholder:text-muted-foreground/50 text-sm transition-colors focus-visible:border-primary focus-visible:ring-primary/20"
                           />
                         </div>
                       </FormControl>
-                      <FormMessage className="text-[#EF4444] text-xs mt-1.5 ml-1" />
+                      <FormMessage className="text-destructive text-xs mt-1.5 ml-1" />
                     </FormItem>
                   )}
                 />
@@ -351,23 +354,23 @@ export function LoginPage() {
                   name="password"
                   render={({ field }) => (
                     <FormItem>
-                      <Label className="text-[#B6BCC8] text-sm font-medium mb-1.5">
+                      <Label className="text-muted-foreground text-sm font-medium mb-1.5">
                         Password
                       </Label>
                       <FormControl>
                         <div className="relative">
-                          <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#5A6178] pointer-events-none" />
+                          <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground/50 pointer-events-none" />
                           <Input
                             {...field}
                             type={showPassword ? 'text' : 'password'}
                             placeholder="Enter your password"
                             autoComplete="current-password"
-                            className="h-11 pl-10 pr-11 rounded-xl bg-[#12131A] border-[#2B2F3E] text-white placeholder:text-[#5A6178] text-sm transition-colors focus-visible:border-[#4F46E5] focus-visible:ring-[#4F46E5]/20"
+                            className="h-11 pl-10 pr-11 rounded-xl bg-muted/50 border-border text-foreground placeholder:text-muted-foreground/50 text-sm transition-colors focus-visible:border-primary focus-visible:ring-primary/20"
                           />
                           <button
                             type="button"
                             onClick={() => setShowPassword(!showPassword)}
-                            className="absolute right-3 top-1/2 -translate-y-1/2 text-[#5A6178] hover:text-[#B6BCC8] transition-colors"
+                            className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground/50 hover:text-muted-foreground transition-colors"
                             aria-label={showPassword ? 'Hide password' : 'Show password'}
                           >
                             {showPassword ? (
@@ -378,7 +381,7 @@ export function LoginPage() {
                           </button>
                         </div>
                       </FormControl>
-                      <FormMessage className="text-[#EF4444] text-xs mt-1.5 ml-1" />
+                      <FormMessage className="text-destructive text-xs mt-1.5 ml-1" />
                     </FormItem>
                   )}
                 />
@@ -398,10 +401,10 @@ export function LoginPage() {
                         <Checkbox
                           checked={field.value}
                           onCheckedChange={field.onChange}
-                          className="data-[state=checked]:bg-[#4F46E5] data-[state=checked]:border-[#4F46E5] border-[#2B2F3E] bg-[#12131A] rounded-[5px] size-4"
+                          className="data-[state=checked]:bg-primary data-[state=checked]:border-primary border-border bg-muted/50 rounded-[5px] size-4"
                         />
                       </FormControl>
-                      <Label className="text-sm text-[#7C8597] font-normal cursor-pointer select-none">
+                      <Label className="text-sm text-muted-foreground font-normal cursor-pointer select-none">
                         Remember me
                       </Label>
                     </FormItem>
@@ -411,7 +414,7 @@ export function LoginPage() {
                 <button
                   type="button"
                   onClick={handleForgotPassword}
-                  className="text-sm text-[#4F46E5] hover:text-[#6366F1] font-medium transition-colors"
+                  className="text-sm text-primary hover:text-primary/80 font-medium transition-colors"
                 >
                   Forgot password?
                 </button>
@@ -422,7 +425,7 @@ export function LoginPage() {
                 <Button
                   type="submit"
                   disabled={isLoading}
-                  className="w-full h-11 rounded-xl bg-gradient-to-r from-[#4F46E5] to-[#4338CA] hover:from-[#6366F1] hover:to-[#4F46E5] text-white font-semibold text-sm shadow-lg shadow-[#4F46E5]/20 hover:shadow-[#4F46E5]/30 transition-all duration-300 disabled:opacity-60 disabled:cursor-not-allowed cursor-pointer"
+                  className="w-full h-11 rounded-xl bg-gradient-to-r from-primary to-primary/90 hover:from-primary/90 hover:to-primary text-primary-foreground font-semibold text-sm shadow-lg shadow-primary/20 hover:shadow-primary/30 transition-all duration-300 disabled:opacity-60 disabled:cursor-not-allowed cursor-pointer"
                 >
                   {isLoading ? (
                     <span className="flex items-center gap-2.5">
@@ -445,29 +448,29 @@ export function LoginPage() {
             className="flex items-center gap-3 my-7"
             variants={itemVariants}
           >
-            <div className="flex-1 h-px bg-[#2B2F3E]" />
-            <span className="text-xs text-[#5A6178] font-medium uppercase tracking-wider">
+            <div className="flex-1 h-px bg-border" />
+            <span className="text-xs text-muted-foreground/60 font-medium uppercase tracking-wider">
               Demo Access
             </span>
-            <div className="flex-1 h-px bg-[#2B2F3E]" />
+            <div className="flex-1 h-px bg-border" />
           </motion.div>
 
           {/* Demo Credentials Hint */}
           <motion.div
             variants={itemVariants}
-            className="rounded-xl bg-[#12131A] border border-[#2B2F3E] p-4"
+            className="rounded-xl bg-muted/50 border border-border p-4"
           >
             <div className="flex items-start gap-3">
-              <div className="w-8 h-8 rounded-lg bg-[#4F46E5]/10 flex items-center justify-center shrink-0 mt-0.5">
-                <Sparkles className="w-4 h-4 text-[#4F46E5]" />
+              <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center shrink-0 mt-0.5">
+                <Sparkles className="w-4 h-4 text-primary" />
               </div>
               <div className="min-w-0">
-                <p className="text-xs font-semibold text-[#B6BCC8] mb-1.5">
+                <p className="text-xs font-semibold text-muted-foreground mb-1.5">
                   Try with demo credentials
                 </p>
                 <div className="space-y-1">
-                  <p className="text-xs text-[#5A6178] font-mono truncate">
-                    <span className="text-[#7C8597]">Email:</span>{' '}
+                  <p className="text-xs text-muted-foreground/60 font-mono truncate">
+                    <span className="text-muted-foreground">Email:</span>{' '}
                     <button
                       type="button"
                       onClick={() => {
@@ -475,14 +478,14 @@ export function LoginPage() {
                           shouldValidate: true,
                         });
                       }}
-                      className="text-[#06B6D4] hover:text-[#22D3EE] transition-colors cursor-pointer"
+                      className="text-accent hover:text-accent/80 transition-colors cursor-pointer"
                     >
                       admin@learnova.com
                     </button>
                   </p>
-                  <p className="text-xs text-[#5A6178]">
-                    <span className="text-[#7C8597] font-mono">Password:</span>{' '}
-                    <span className="text-[#B6BCC8]">any password</span>
+                  <p className="text-xs text-muted-foreground/60">
+                    <span className="text-muted-foreground font-mono">Password:</span>{' '}
+                    <span className="text-muted-foreground">any password</span>
                   </p>
                 </div>
               </div>

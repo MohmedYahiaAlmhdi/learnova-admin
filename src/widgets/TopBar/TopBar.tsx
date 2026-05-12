@@ -11,7 +11,10 @@ import {
   Settings,
   LogOut,
   Command,
+  Sun,
+  Moon,
 } from 'lucide-react';
+import { useTheme } from 'next-themes';
 
 import { useNavigationStore, useAuthStore } from '@/app/store';
 import { useIsMobile } from '@/hooks/use-mobile';
@@ -60,6 +63,7 @@ const topbarVariants = {
 // ── Component ───────────────────────────────────────────────────
 export function TopBar() {
   const isMobile = useIsMobile();
+  const { theme, setTheme } = useTheme();
 
   // Navigation store
   const currentPage = useNavigationStore((s) => s.currentPage);
@@ -234,6 +238,17 @@ export function TopBar() {
               {unreadCount > 9 ? '9+' : unreadCount}
             </span>
           )}
+        </Button>
+
+        {/* Theme toggle */}
+        <Button
+          variant="ghost"
+          size="icon"
+          className="size-9 text-muted-foreground hover:text-foreground"
+          onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+          aria-label="Toggle theme"
+        >
+          {theme === 'dark' ? <Sun className="size-[18px]" /> : <Moon className="size-[18px]" />}
         </Button>
 
         <Separator orientation="vertical" className="mx-1.5 h-6 bg-border/50" />
